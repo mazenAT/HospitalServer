@@ -5,20 +5,20 @@
  */
 package hospital.Tranactions;
 
+import hospital.Person.Patient;
+
 /**
  *
  * @author mazen
  */
 public class Medical_Insurance {
-    private String ID;
     private String Patient_ID;
     private String CompanyName;
     private boolean Status;
     private String Type;
     private float cost;
 
-    public Medical_Insurance(String ID, String Patient_ID, String CompanyName, boolean Status, String Type, float cost) {
-        this.ID = ID;
+    public Medical_Insurance(String Patient_ID, String CompanyName, boolean Status, String Type, float cost) {
         this.Patient_ID = Patient_ID;
         this.CompanyName = CompanyName;
         this.Status = Status;
@@ -26,13 +26,6 @@ public class Medical_Insurance {
         this.cost = cost;
     }
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
 
     public String getPatient_ID() {
         return Patient_ID;

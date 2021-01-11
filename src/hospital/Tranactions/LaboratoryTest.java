@@ -10,34 +10,25 @@ package hospital.Tranactions;
  * @author mazen
  */
 public class LaboratoryTest {
-    private String ID;
-    private String TestName;
+    private String TestType;
     private String ChemistName;
     private float testPrice;
     private String PateintName;
 
-    public LaboratoryTest(String ID, String TestName, String ChemistName, float testPrice, String PateintName) {
-        this.ID = ID;
-        this.TestName = TestName;
+    public LaboratoryTest(String TestType, String ChemistName, float testPrice, String PateintName) {
+        this.TestType = TestType;
         this.ChemistName = ChemistName;
         this.testPrice = testPrice;
         this.PateintName = PateintName;
     }
 
-    public String getID() {
-        return ID;
+
+    public String getTestType() {
+        return TestType;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public String getTestName() {
-        return TestName;
-    }
-
-    public void setTestName(String TestName) {
-        this.TestName = TestName;
+    public void setTestType(String TestType) {
+        this.TestType = TestType;
     }
 
     public String getChemistName() {

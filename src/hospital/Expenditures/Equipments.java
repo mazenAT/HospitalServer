@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hospital;
+package hospital.Expenditures;
 
 /**
  *
- * @author mazen
+ * @author isl27
  */
-public class Person {
-    private String Fname;
-
-    public Person(String Fname) {
-        this.Fname = Fname;
-    }
-    
-    
+public class Equipments {
     
 }

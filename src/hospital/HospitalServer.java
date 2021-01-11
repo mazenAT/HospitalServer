@@ -18,8 +18,6 @@ public class HospitalServer {
         // TODO code application logic here
         DBConnection db = new DBConnection();
         
-        Person P1 = new Person("Youssef");
-        db.insertStudent(P1);
         
 
     }

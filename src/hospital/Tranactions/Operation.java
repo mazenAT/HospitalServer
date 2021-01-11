@@ -5,12 +5,12 @@
  */
 package hospital.Tranactions;
 
+import hospital.Person.Patient;
 /**
  *
  * @author mazen
  */
 public class Operation {
-    private String OperationID;
     private float cost;
     private String time;
     private String AssignedNurse;
@@ -19,8 +19,7 @@ public class Operation {
     private int RoomNumber;
     private int PatientId;
 
-    public Operation(String OperationID, float cost, String time, String AssignedNurse, String AssignedDoctor, int wardId, int RoomNumber, int PatientId) {
-        this.OperationID = OperationID;
+    public Operation(float cost, String time, String AssignedNurse, String AssignedDoctor, int wardId, int RoomNumber, int PatientId) {
         this.cost = cost;
         this.time = time;
         this.AssignedNurse = AssignedNurse;
@@ -30,15 +29,6 @@ public class Operation {
         this.PatientId = PatientId;
     }
 
-    public String getOperationID() {
-        return OperationID;
-    }
-
-    public void setOperationID(String OperationID) {
-        this.OperationID = OperationID;
-    }
-
-   
 
     public float getCost() {
         return cost;
@@ -96,7 +86,7 @@ public class Operation {
         this.PatientId = PatientId;
     }
     
-    public void AssignOperationtoPatient(Pateint P){
+    public void AssignOperationtoPatient(Patient P){
         
     }
     public void AssignOperationtoDoctor(Doctor P){

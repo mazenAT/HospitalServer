@@ -37,11 +37,6 @@ MongoClientURI uri = new MongoClientURI(
         System.out.println("Connected successfully");
     }
     
-            public void insertStudent(Person P) {
-       
-        collection.insertOne(Document.parse(gson.toJson(P)));
-
-    }
 
     
 }
