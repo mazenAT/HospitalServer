@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hospitalserver;
+package hospital;
 
 /**
  *
@@ -16,6 +16,12 @@ public class HospitalServer {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DBConnection db = new DBConnection();
+        
+        Person P1 = new Person("Youssef");
+        db.insertStudent(P1);
+        
+
     }
     
 }
