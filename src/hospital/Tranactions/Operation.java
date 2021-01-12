@@ -89,7 +89,7 @@ public class Operation {
     public void AssignOperationtoPatient(Patient P){
         
     }
-    public void AssignOperationtoDoctor(Doctor P){
+    public void AssignOperationtoDoctor(Doctor D){
         
     }
     public void NotifyAllObservers(){
