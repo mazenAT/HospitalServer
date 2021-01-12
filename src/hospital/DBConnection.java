@@ -5,7 +5,6 @@
  */
 package hospital;
 
-
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -27,6 +26,7 @@ import hospital.Tranactions.*;
  * @author mazen
  */
 public class DBConnection {
+
     private MongoClient mongo;
     private MongoDatabase hospital;
     private MongoCollection<Document> Person;
@@ -41,21 +41,21 @@ public class DBConnection {
     private MongoCollection<Document> Warehouse;
     private MongoCollection<Document> Bill;
     private MongoCollection<Document> LaboratoryTest;
-    private MongoCollection<Document> Medical_Insurance; 
+    private MongoCollection<Document> Medical_Insurance;
     private MongoCollection<Document> Operation;
     private Gson gson = new Gson();
-    
-MongoClientURI uri = new MongoClientURI(
-    "mongodb+srv://mazen:Mazen123@cluster0.x8xwc.mongodb.net/test"
-);
 
-    public DBConnection(){
+    MongoClientURI uri = new MongoClientURI(
+            "mongodb+srv://mazen:Mazen123@cluster0.x8xwc.mongodb.net/test"
+    );
+
+    public DBConnection() {
         mongo = new MongoClient(uri);// uri of the database
         hospital = mongo.getDatabase("hospital");//database name
-        Person= hospital.getCollection("Person");
-        Clinic= hospital.getCollection("Clinic");
-        Laboratory= hospital.getCollection("Laboratory");
-        Room= hospital.getCollection("Room");
+        Person = hospital.getCollection("Person");
+        Clinic = hospital.getCollection("Clinic");
+        Laboratory = hospital.getCollection("Laboratory");
+        Room = hospital.getCollection("Room");
         Equipments = hospital.getCollection("Equipments");
         MedicalTool = hospital.getCollection("MedicalTool");
         Medicine = hospital.getCollection("Medicine");
@@ -64,20 +64,52 @@ MongoClientURI uri = new MongoClientURI(
         Supplier = hospital.getCollection("Supplier");
         Bill = hospital.getCollection("Bill");
         LaboratoryTest = hospital.getCollection("LaboratoryTest");
-        Medical_Insurance= hospital.getCollection("Medical_Insurance");
-        Operation= hospital.getCollection("Operation");
+        Medical_Insurance = hospital.getCollection("Medical_Insurance");
+        Operation = hospital.getCollection("Operation");
         System.out.println("Connected successfully");
     }
-    
+
+    //***************** Clinic Database *******************// 
+    public void insertClinic(Clinic C) {
+        Clinic.insertOne(Document.parse(gson.toJson(C)));
+        System.out.println("Clinic inserted.");
+    }
+
+    public void deleteClinic(String ClinicNumber) {
+        Clinic.deleteOne(Filters.eq("ClinicNumber", ClinicNumber));
+    }
+
+    public Clinic GetClinicbyNum(String ClinicNumber) {
+        Document doc = Clinic.find(Filters.eq("ClinicNumber", ClinicNumber)).first();
+        Clinic result = gson.fromJson(doc.toJson(), Clinic.class);
+        return result;
+    }
+
+    public ArrayList<Clinic> getClinicbyNum(String ClinicNumber) {
+        ArrayList<Clinic> result = new ArrayList();
+        ArrayList<Document> docs = Clinic.find(Filters.eq("ClinicNumber", ClinicNumber)).into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Clinic.class));
+        }
+        return result;
+    }
+
+    public void UpdateClinic(Clinic C) {
+        Document doc = Document.parse(gson.toJson(C));
+        Clinic.replaceOne(Filters.eq("ClinicNumber", C.getClinicNumber()), doc);
+
+    }
+
+    //***************** Clinic Database *******************// 
     public void insertPerson(Person P) {
         Person.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Person inserted.");
     }
-    
+
     public void deletePerson(String email) {
         Person.deleteOne(Filters.eq("email", email));
     }
-    
+
     public Person getStudentByMail(String email) {
         Document doc = collection.find(Filters.eq("email", email)).first();
         Person result = gson.fromJson(doc.toJson(), Person.class);
@@ -128,5 +160,5 @@ MongoClientURI uri = new MongoClientURI(
     public void close() {
         mongo.close();
     }
-    
+
 }
