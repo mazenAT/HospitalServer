@@ -52,7 +52,8 @@ MongoClientURI uri = new MongoClientURI(
     public DBConnection(){
         mongo = new MongoClient(uri);// uri of the database
         hospital = mongo.getDatabase("hospital");//database name
-        Person = hospital.getCollection("Person"); // Collection name
+
+        Person = hospital.getCollection("Person"); // Collection nam
         Clinic= hospital.getCollection("Clinic");
         Laboratory= hospital.getCollection("Laboratory");
         Room= hospital.getCollection("Room");
@@ -69,6 +70,7 @@ MongoClientURI uri = new MongoClientURI(
         System.out.println("Connected successfully");
     }
     
+
   
     
     
@@ -121,7 +123,6 @@ MongoClientURI uri = new MongoClientURI(
     
      public void deleteMedicine(String Code) {
         Medicine.deleteOne(Filters.eq("Code", Code));
-    }
      
     public Medicine getMedicineByCode(String Code) {
         Document doc = Medicine.find(Filters.eq("Code", Code)).first();
