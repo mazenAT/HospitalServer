@@ -52,10 +52,12 @@ public class DBConnection {
     public DBConnection() {
         mongo = new MongoClient(uri);// uri of the database
         hospital = mongo.getDatabase("hospital");//database name
-        Person = hospital.getCollection("Person");
-        Clinic = hospital.getCollection("Clinic");
-        Laboratory = hospital.getCollection("Laboratory");
-        Room = hospital.getCollection("Room");
+
+
+        Person = hospital.getCollection("Person"); // Collection nam
+        Clinic= hospital.getCollection("Clinic");
+        Laboratory= hospital.getCollection("Laboratory");
+        Room= hospital.getCollection("Room");
         Equipments = hospital.getCollection("Equipments");
         MedicalTool = hospital.getCollection("MedicalTool");
         Medicine = hospital.getCollection("Medicine");
@@ -68,6 +70,7 @@ public class DBConnection {
         Operation = hospital.getCollection("Operation");
         System.out.println("Connected successfully");
     }
+
 
     //***************** Clinic Database *******************// 
     public void insertClinic(Clinic C) {
@@ -113,48 +116,75 @@ public class DBConnection {
     public Person getStudentByMail(String email) {
         Document doc = collection.find(Filters.eq("email", email)).first();
         Person result = gson.fromJson(doc.toJson(), Person.class);
-        return result;
+    
+    public void updateMedicalTool(Equipments E) {
+        Document doc = Document.parse(gson.toJson(E));
+        Equipments.replaceOne(Filters.eq("Id", E.getId()), doc);
+        
+    } 
+     
+    public void insertMedicalTool(MedicalTool MT) {
+        MedicalTool.insertOne(Document.parse(gson.toJson(MT)));
+        
     }
-
-    public ArrayList<Person> getStudentsByYear(int year) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.eq("year", year)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
+    
+     public void deleteMedicalToolt(String Code) {
+        MedicalTool.deleteOne(Filters.eq("Code", Code));
     }
-
-    public ArrayList<Person> getStudentsByYearLT(int year) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.lt("year", year)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
+     
+    public MedicalTool getMedicalToolByCode(String Code) {
+        Document doc = MedicalTool.find(Filters.eq("Code", Code)).first();
+        MedicalTool result = gson.fromJson(doc.toJson(), MedicalTool.class);
         return result;
+    } 
+    
+    public void updateMedicalTool(MedicalTool MT) {
+        Document doc = Document.parse(gson.toJson(MT));
+        MedicalTool.replaceOne(Filters.eq("Code", MT.getCode()), doc);
+        
     }
-
-    public ArrayList<Person> getStudentsByCourse(String courseID) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.eq("courses.courseID", courseID)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
+    
+    
+    public void insertMedicine(Medicine M) {
+        Medicine.insertOne(Document.parse(gson.toJson(M)));
+     
+    }
+    
+     public void deleteMedicine(String Code) {
+        Medicine.deleteOne(Filters.eq("Code", Code));
+     
+    public Medicine getMedicineByCode(String Code) {
+        Document doc = Medicine.find(Filters.eq("Code", Code)).first();
+        Medicine result = gson.fromJson(doc.toJson(), Medicine.class);
         return result;
+    }  
+    
+    public void updateMedicine(Medicine M) {
+        Document doc = Document.parse(gson.toJson(M));
+        Medicine.replaceOne(Filters.eq("Code", M.getCode()), doc);
+        
     }
-
-    public ArrayList<Person> getAllStudents() {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find().into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
+    
+    public void insertWard(Ward WR) {
+        Ward.insertOne(Document.parse(gson.toJson(WR)));
+        
+    }
+    
+    public void deleteWard(String WardId) {
+        Ward.deleteOne(Filters.eq("WardId", WardId));
+    }
+    
+    public Ward getWardById(String WardId) {
+        Document doc = Ward.find(Filters.eq("WardId", WardId)).first();
+        Ward result = gson.fromJson(doc.toJson(), Ward.class);
         return result;
-    }
+    } 
+    
 
-    public void updateStudent(Person s) {
-        Document doc = Document.parse(gson.toJson(s));
-        collection.replaceOne(Filters.eq("email", s.getEmail()), doc);
+    public void updateWard(Ward W) {
+        Document doc = Document.parse(gson.toJson(W));
+        Ward.replaceOne(Filters.eq("WardId", W.getWardId()), doc);
+        
     }
 
     public void close() {
