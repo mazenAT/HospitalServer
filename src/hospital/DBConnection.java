@@ -29,13 +29,7 @@ import hospital.Tranactions.*;
 public class DBConnection {
     private MongoClient mongo;
     private MongoDatabase hospital;
-    private MongoCollection<Document> Admin;
-    private MongoCollection<Document> Accountant;
-    private MongoCollection<Document> Chemist;
-    private MongoCollection<Document> Doctor;
-    private MongoCollection<Document> Receptionist;
-    private MongoCollection<Document> Patient;
-    private MongoCollection<Document> Nurse;
+    private MongoCollection<Document> Person;
     private MongoCollection<Document> Equipments;
     private MongoCollection<Document> MedicalTool;
     private MongoCollection<Document> Medicine;
@@ -58,13 +52,7 @@ MongoClientURI uri = new MongoClientURI(
     public DBConnection(){
         mongo = new MongoClient(uri);// uri of the database
         hospital = mongo.getDatabase("hospital");//database name
-        Admin = hospital.getCollection("Admin"); // Collection name
-        Accountant = hospital.getCollection("Accountant"); // Collection name
-        Chemist = hospital.getCollection("Chemist");
-        Doctor = hospital.getCollection("Doctor");
-        Nurse= hospital.getCollection("Nurse");
-        Patient= hospital.getCollection("Patient");
-        Receptionist= hospital.getCollection("Receptionist");
+        Person= hospital.getCollection("Person");
         Clinic= hospital.getCollection("Clinic");
         Laboratory= hospital.getCollection("Laboratory");
         Room= hospital.getCollection("Room");
@@ -81,63 +69,15 @@ MongoClientURI uri = new MongoClientURI(
         System.out.println("Connected successfully");
     }
     
-    public void insertPerson(Admin A) {
-        Admin.insertOne(Document.parse(gson.toJson(A)));
-        System.out.println("Student inserted.");
+    public void insertPerson(Person P) {
+        Person.insertOne(Document.parse(gson.toJson(P)));
+        System.out.println("Person inserted.");
     }
-    public void insertPerson(Equipments E) {
-        Equipments.insertOne(Document.parse(gson.toJson(E)));
-        System.out.println("Student inserted.");
+    
+    public void deletePerson(String email) {
+        Person.deleteOne(Filters.eq("email", email));
     }
-    public void insertPerson(MedicalTool MT) {
-        MedicalTool.insertOne(Document.parse(gson.toJson(MT)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Medicine M) {
-        Medicine.insertOne(Document.parse(gson.toJson(M)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Warehouse W) {
-        Warehouse.insertOne(Document.parse(gson.toJson(W)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Ward WR) {
-        Ward.insertOne(Document.parse(gson.toJson(WR)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Room R) {
-        Room.insertOne(Document.parse(gson.toJson(R)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Laboratory L) {
-        Laboratory.insertOne(Document.parse(gson.toJson(L)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Clinic C) {
-        Clinic.insertOne(Document.parse(gson.toJson(C)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Supplier S) {
-        Supplier.insertOne(Document.parse(gson.toJson(S)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Bill B) {
-        Bill.insertOne(Document.parse(gson.toJson(B)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(LaboratoryTest LT) {
-        LaboratoryTest.insertOne(Document.parse(gson.toJson(LT)));
-        System.out.println("Student inserted.");
-    }
-    public void insertPerson(Operation O) {
-        Operation.insertOne(Document.parse(gson.toJson(O)));
-        System.out.println("Student inserted.");
-    }
-
-    public void deleteStudent(String email) {
-        collection.deleteOne(Filters.eq("email", email));
-    }
-
+    
     public Person getStudentByMail(String email) {
         Document doc = collection.find(Filters.eq("email", email)).first();
         Person result = gson.fromJson(doc.toJson(), Person.class);
