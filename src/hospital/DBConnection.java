@@ -76,7 +76,14 @@ public class DBConnection {
     
      public void insertPerson(Person P) {
         Person.insertOne(Document.parse(gson.toJson(P)));
-        System.out.println("Room inserted.");
+        System.out.println("Person inserted.");
+    }
+     public void deletePerson(String email) {
+        Person.deleteOne(Filters.eq("email", email));
+    }
+     public void updatePerson(Person P) {
+        Document doc = Document.parse(gson.toJson(P));
+        Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
     }
     public Person getPersonByMail(String email) {
         Document doc = Person.find(Filters.eq("email", email)).first();
@@ -141,10 +148,7 @@ public class DBConnection {
 
     }
 
-    public void updatePerson(Person P) {
-        Document doc = Document.parse(gson.toJson(P));
-        Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
-    }
+    
     
       public void insertLab(Laboratory l) {
         Laboratory.insertOne(Document.parse(gson.toJson(l)));

@@ -19,7 +19,7 @@ public class Accountant extends Person {
     private float Current_treasury;
     private Operation operation;
 
-    public Accountant(String jobDegree, Medical_Insurance[] medicalInsurances, float Current_treasury, Operation operation, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Accountant(String jobDegree, Medical_Insurance[] medicalInsurances, float Current_treasury, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.jobDegree = jobDegree;
         this.medicalInsurances = medicalInsurances;

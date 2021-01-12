@@ -10,7 +10,7 @@ package hospital.Person;
  * @author islam
  */
 
-enum Genders{Male,Female};
+
 
 public class Person {
     
@@ -18,12 +18,12 @@ public class Person {
     private String email;
     private String phone;
     private int age;
-    private Genders gender;
+    private String gender;
     private String address;
     private String role;
     private float salary;
 
-    public Person(String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -66,11 +66,11 @@ public class Person {
         this.age = age;
     }
 
-    public Genders getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Genders gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 

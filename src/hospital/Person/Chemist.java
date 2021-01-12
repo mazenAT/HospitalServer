@@ -12,34 +12,32 @@ import hospital.Person.*;
  * @author islam
  */
 
-
-
 public class Chemist extends Person{
     
-    private Degreelvl degreeLvl;
-    private Shifts Shift;
+    private String degreeLvl;
+    private String Shift;
     private LaboratoryTest[] LT;
 
-    public Chemist(Degreelvl degreeLvl, Shifts Shift, LaboratoryTest[] LT, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Chemist(String degreeLvl, String Shift, LaboratoryTest[] LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.degreeLvl = degreeLvl;
         this.Shift = Shift;
         this.LT = LT;
     }
 
-    public Degreelvl getDegreeLvl() {
+    public String getDegreeLvl() {
         return degreeLvl;
     }
 
-    public void setDegreeLvl(Degreelvl degreeLvl) {
+    public void setDegreeLvl(String degreeLvl) {
         this.degreeLvl = degreeLvl;
     }
 
-    public Shifts getShift() {
+    public String getShift() {
         return Shift;
     }
 
-    public void setShift(Shifts Shift) {
+    public void setShift(String Shift) {
         this.Shift = Shift;
     }
 

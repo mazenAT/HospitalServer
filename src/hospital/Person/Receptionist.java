@@ -13,7 +13,7 @@ public class Receptionist extends Person {
      private String shift;
      private String quification;
 
-    public Receptionist(String shift, String quification, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Receptionist(String shift, String quification, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.shift = shift;
         this.quification = quification;

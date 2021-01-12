@@ -16,7 +16,7 @@ public class Clinic {
     private String WorkingDays;
     private String ClinicNumber;
     private int OpenHours;
-    private ArrayList <Doctor> doctor;
+    private ArrayList<Doctor> doctor;
     private float checkUp_price;
 
     public Clinic(String WorkingDays, int OpenHours, ArrayList<Doctor> doctor, float checkUp_price) {

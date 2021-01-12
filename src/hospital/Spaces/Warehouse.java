@@ -60,6 +60,14 @@ public class Warehouse {
         this.medicalToolquantity = medicalToolquantity;
     }
 
+    public int getWarehouseNum() {
+        return WarehouseNum;
+    }
+
+    public void setWarehouseNum(int WarehouseNum) {
+        this.WarehouseNum = WarehouseNum;
+    }
+
     
     public boolean CheckMedicinequantity(){
     return true;

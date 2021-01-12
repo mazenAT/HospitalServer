@@ -20,11 +20,11 @@ public class Patient {
     private String name;
     private String phone;
     private int age;
-    private Genders gender;
+    private String gender;
     private Medical_Insurance insurance;
     private String MedicalCondition;
 
-    public Patient(BloodType BT, String name, String phone, int age, Genders gender, Medical_Insurance insurance, String MedicalCondition) {
+    public Patient(BloodType BT, String name, String phone, int age, String gender, Medical_Insurance insurance, String MedicalCondition) {
         this.BT = BT;
         this.name = name;
         this.phone = phone;
@@ -66,11 +66,11 @@ public class Patient {
         this.age = age;
     }
 
-    public Genders getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Genders gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
