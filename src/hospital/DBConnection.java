@@ -78,51 +78,24 @@ MongoClientURI uri = new MongoClientURI(
         Person.deleteOne(Filters.eq("email", email));
     }
     
-    public Person getStudentByMail(String email) {
-        Document doc = collection.find(Filters.eq("email", email)).first();
+    public Person getPersonByMail(String email) {
+        Document doc = Person.find(Filters.eq("email", email)).first();
         Person result = gson.fromJson(doc.toJson(), Person.class);
         return result;
     }
 
-    public ArrayList<Person> getStudentsByYear(int year) {
+    public ArrayList<Person> getAllPersons() {
         ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.eq("year", year)).into(new ArrayList<Document>());
+        ArrayList<Document> docs = Person.find().into(new ArrayList<Document>());
         for (int i = 0; i < docs.size(); i++) {
             result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
         }
         return result;
     }
 
-    public ArrayList<Person> getStudentsByYearLT(int year) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.lt("year", year)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
-    }
-
-    public ArrayList<Person> getStudentsByCourse(String courseID) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.eq("courses.courseID", courseID)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
-    }
-
-    public ArrayList<Person> getAllStudents() {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find().into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
-    }
-
-    public void updateStudent(Person s) {
-        Document doc = Document.parse(gson.toJson(s));
-        collection.replaceOne(Filters.eq("email", s.getEmail()), doc);
+    public void updatePerson(Person P) {
+        Document doc = Document.parse(gson.toJson(P));
+        Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
     }
 
     public void close() {

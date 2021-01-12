@@ -13,7 +13,7 @@ import hospital.Person.*;
  * @author Lenovo
  */
 public class Clinic {
-     private String WorkingDays ;
+    private String WorkingDays;
     private int OpenHours;
     private ArrayList <Doctor> doctor;
     private float checkUp_price;
