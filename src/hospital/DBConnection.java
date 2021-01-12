@@ -97,9 +97,32 @@ MongoClientURI uri = new MongoClientURI(
         Document doc = Document.parse(gson.toJson(P));
         Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
     }
+    
+      public void insertLab(Laboratory l) {
+        Laboratory.insertOne(Document.parse(gson.toJson(l)));
+        System.out.println("Laboratory inserted.");
+      }
 
-    public void close() {
-        mongo.close();
+    public void deleteLab(String id) {
+    Laboratory.deleteOne(Filters.eq("id", id));
     }
+
+    public Laboratory getLabByID(String id) {
+    Document doc = Laboratory.find(Filters.eq("id", id)).first();
+    Laboratory result = gson.fromJson(doc.toJson(), Laboratory.class);
+    return result;
+    }
+
+
+
+    public ArrayList<Laboratory> getAllLabs() {
+    ArrayList<Laboratory> result = new ArrayList();
+    ArrayList<Document> docs = Laboratory.find().into(new ArrayList<Document>());
+    for (int i = 0; i < docs.size(); i++) {
+    result.add(gson.fromJson(docs.get(i).toJson(), Laboratory.class));
+    }
+    return result;
+    }
+    
     
 }
