@@ -12,7 +12,7 @@ import hospital.Tranactions.Operation;
  *
  * @author Ezzat
  */
-public class Accountant extends person {
+public class Accountant extends Person {
     private String jobDegree;
     private Medical_Insurance[] medicalInsurances;
     private float intial_treasury;

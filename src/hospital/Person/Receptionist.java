@@ -9,7 +9,7 @@ package hospital.Person;
  *
  * @author Ezzat
  */
-public class Receptionist extends person {
+public class Receptionist extends Person {
      private String shift;
      private String quification;
 

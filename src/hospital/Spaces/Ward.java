@@ -17,10 +17,10 @@ public class Ward {
 private String WardName;
 private int NumOfRooms;
 private int NurseAssigned;
-private ArrayList<room> Rooms;
+private ArrayList<Room> Rooms;
 private  ArrayList<Nurse> Nurses;
 
-     public Ward(String WardId, String WardName, int NumOfRooms, int NurseAssigned, ArrayList<room> Rooms, ArrayList<Nurse> Nurses) {
+     public Ward(String WardId, String WardName, int NumOfRooms, int NurseAssigned, ArrayList<Room> Rooms, ArrayList<Nurse> Nurses) {
         this.WardId = WardId;
         this.WardName = WardName;
         this.NumOfRooms = NumOfRooms;
@@ -67,11 +67,11 @@ private  ArrayList<Nurse> Nurses;
         this.NurseAssigned = NurseAssigned;
     }
 
-    public ArrayList<room> getRooms() {
+    public ArrayList<Room> getRooms() {
         return Rooms;
     }
 
-    public void setRooms(ArrayList<room> Rooms) {
+    public void setRooms(ArrayList<Room> Rooms) {
         this.Rooms = Rooms;
     }
 

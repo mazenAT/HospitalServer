@@ -13,7 +13,7 @@ package hospital.Person;
 enum Degreelvl{Bachelors, MAsters, Doctoral};
 enum Shifts{NightShift, DayShift};
 
-public class Nurse extends person{
+public class Nurse extends Person{
     
     private Degreelvl degreeLvl;
     private Shifts Shift;

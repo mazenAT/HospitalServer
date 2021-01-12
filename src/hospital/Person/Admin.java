@@ -9,14 +9,14 @@ import hospital.Tranactions.Operation;
  *
  * @author Ezzat
  */
-public class Admin extends person {
+public class Admin extends Person {
     private int adminLicence;
     private String Credintials;
-    private person[] person;
+    private Person[] person;
     private Admin AdminInsurance;
     private Operation operation;
 
-    public Admin(int adminLicence, String Credintials, person[] person, Admin AdminInsurance, Operation operation, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Admin(int adminLicence, String Credintials, Person[] person, Admin AdminInsurance, Operation operation, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.adminLicence = adminLicence;
         this.Credintials = Credintials;
@@ -41,11 +41,11 @@ public class Admin extends person {
         this.Credintials = Credintials;
     }
 
-    public person[] getPerson() {
+    public Person[] getPerson() {
         return person;
     }
 
-    public void setPerson(person[] person) {
+    public void setPerson(Person[] person) {
         this.person = person;
     }
 

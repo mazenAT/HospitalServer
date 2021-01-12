@@ -12,7 +12,7 @@ package hospital.Person;
 
 enum Genders{Male,Female};
 
-public class person {
+public class Person {
     
     private String name;
     private String email;
@@ -23,7 +23,7 @@ public class person {
     private String role;
     private float salary;
 
-    public person(String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Person(String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
         this.name = name;
         this.email = email;
         this.phone = phone;

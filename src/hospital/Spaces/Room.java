@@ -12,14 +12,14 @@ import java.util.ArrayList;
  *
  * @author Lenovo
  */
-public class room {
+public class Room {
      private int RoomNum;
     private boolean RoomAvaliable;
     private String RoomType;
     private ArrayList <Patient> patients;
     private String WardName;
 
-    public room(int RoomNum, boolean RoomAvaliable, String RoomType, ArrayList<Patient> patients, String WardName) {
+    public Room(int RoomNum, boolean RoomAvaliable, String RoomType, ArrayList<Patient> patients, String WardName) {
         this.RoomNum = RoomNum;
         this.RoomAvaliable = RoomAvaliable;
         this.RoomType = RoomType;

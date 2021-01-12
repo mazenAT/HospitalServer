@@ -12,7 +12,7 @@ import hospital.Tranactions.Operation;
  * @author Ezzat
  */
 
-public class Doctor extends person{
+public class Doctor extends Person{
     private String Specialziation;
     private String Department;
     private String shift;

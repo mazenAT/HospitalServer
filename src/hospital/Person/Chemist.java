@@ -14,7 +14,7 @@ import hospital.Person.*;
 
 
 
-public class Chemist extends person{
+public class Chemist extends Person{
     
     private Degreelvl degreeLvl;
     private Shifts Shift;
