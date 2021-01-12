@@ -13,7 +13,8 @@ import hospital.Expenditures.*;
  * @author Lenovo
  */
 public class Warehouse {
-     private ArrayList <Medicine> medicine;
+    private int WarehouseNum;
+    private ArrayList <Medicine> medicine;
     private ArrayList <MedicalTool> MedicalTool;
     private int Medicinequantity;
     private int medicalToolquantity;
