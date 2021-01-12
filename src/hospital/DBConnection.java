@@ -71,6 +71,70 @@ public class DBConnection {
         System.out.println("Connected successfully");
     }
 
+    
+    
+    
+
+     public void insertRoom(Room R) {
+        Room.insertOne(Document.parse(gson.toJson(R)));
+        System.out.println("Room inserted.");
+    }
+      public void insertSupplier(Supplier S) {
+        Supplier.insertOne(Document.parse(gson.toJson(S)));
+        System.out.println("Supplier inserted.");
+    }
+       public void insertWarehouse(Warehouse W) {
+        Warehouse.insertOne(Document.parse(gson.toJson(W)));
+        System.out.println("Warehouse inserted.");
+    }
+       
+     public void deleteRoom(int RoomNum) {
+        Room.deleteOne(Filters.eq("RoomNum", RoomNum));
+    }
+      public void deleteSupplier(String Supplier_Name) {
+        Supplier.deleteOne(Filters.eq("Supplier_Name", Supplier_Name));
+    }   
+     public void deleteWarehouse(int WarehouseNum) {
+        Warehouse.deleteOne(Filters.eq("WarehouseNum", WarehouseNum));
+    }
+       
+     public Room getRoomByRoomNum(int RoomNum) {
+        Document doc = Room.find(Filters.eq("RoomNum",  RoomNum)).first();
+        Room result = gson.fromJson(doc.toJson(), Room.class);
+        return result;
+    }
+     public Supplier getSupplierBySupplier_Name(String Supplier_Name) {
+        Document doc = Supplier.find(Filters.eq("Supplier_Name",  Supplier_Name)).first();
+        Supplier result = gson.fromJson(doc.toJson(), Supplier.class);
+        return result;
+    }
+     public Warehouse getWarehouseByWarehouse(int WarehouseNum) {
+        Document doc = Warehouse.find(Filters.eq("WarehouseNum",  WarehouseNum)).first();
+        Warehouse result = gson.fromJson(doc.toJson(), Warehouse.class);
+        return result;
+    }
+     public ArrayList<Room> getAllRoom() {
+        ArrayList<Room> result = new ArrayList();
+        ArrayList<Document> docs = Room.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Room.class));
+        }
+        return result;
+    }public ArrayList<Warehouse> getAllWarehouse() {
+        ArrayList<Warehouse> result = new ArrayList();
+        ArrayList<Document> docs = Warehouse.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Warehouse.class));
+        }
+        return result;
+    }public ArrayList<Supplier> getAllSupplier() {
+        ArrayList<Supplier> result = new ArrayList();
+        ArrayList<Document> docs = Supplier.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Supplier.class));
+        }
+
+
 
     //***************** Clinic Database *******************// 
     public void insertClinic(Clinic C) {
@@ -156,6 +220,7 @@ public class DBConnection {
     public Medicine getMedicineByCode(String Code) {
         Document doc = Medicine.find(Filters.eq("Code", Code)).first();
         Medicine result = gson.fromJson(doc.toJson(), Medicine.class);
+
         return result;
     }  
     
@@ -169,6 +234,15 @@ public class DBConnection {
         Ward.insertOne(Document.parse(gson.toJson(WR)));
         
     }
+
+      public void updateRoom(Room R) {
+        Document doc = Document.parse(gson.toJson(R));
+        Room.replaceOne(Filters.eq("RoomNum", R.getRoomNum()), doc);
+    }
+      public void updateSupplier(Supplier s) {
+        Document doc = Document.parse(gson.toJson(s));
+        Supplier.replaceOne(Filters.eq("Supplier_Name", s.getSupplier_Name()), doc);
+
     
     public void deleteWard(String WardId) {
         Ward.deleteOne(Filters.eq("WardId", WardId));
@@ -185,8 +259,13 @@ public class DBConnection {
         Document doc = Document.parse(gson.toJson(W));
         Ward.replaceOne(Filters.eq("WardId", W.getWardId()), doc);
         
-    }
 
+    }
+      public void updateWarehouse(Warehouse s) {
+        Document doc = Document.parse(gson.toJson(s));
+        Warehouse.replaceOne(Filters.eq("WarehouseNum", s.getWarehouseNum()), doc);
+    }
+     
     public void close() {
         mongo.close();
     }
