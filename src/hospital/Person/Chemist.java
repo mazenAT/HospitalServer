@@ -6,14 +6,13 @@
 package hospital.Person;
 
 import hospital.Tranactions.LaboratoryTest;
-
+import hospital.Person.*;
 /**
  *
  * @author islam
  */
 
-enum Degreelvl{Bachelors, MAsters, Doctoral};
-enum Shifts{NightShift, DayShift};
+
 
 public class Chemist extends person{
     

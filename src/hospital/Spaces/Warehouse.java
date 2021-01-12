@@ -6,39 +6,42 @@
 package hospital.Spaces;
 
 import java.util.ArrayList;
+import hospital.Expenditures.*;
 
 /**
  *
  * @author Lenovo
  */
 public class Warehouse {
-     private ArrayList <medicine> medicine;
-    private ArrayList <medicalTool> MedicalTool;
+     private ArrayList <Medicine> medicine;
+    private ArrayList <MedicalTool> MedicalTool;
     private int Medicinequantity;
     private int medicalToolquantity;
 
-    public Warehouse(ArrayList<medicine> medicine, ArrayList<medicalTool> MedicalTool, int Medicinequantity, int medicalToolquantity) {
+    public Warehouse(ArrayList<Medicine> medicine, ArrayList<MedicalTool> MedicalTool, int Medicinequantity, int medicalToolquantity) {
         this.medicine = medicine;
         this.MedicalTool = MedicalTool;
         this.Medicinequantity = Medicinequantity;
         this.medicalToolquantity = medicalToolquantity;
     }
 
-    public ArrayList<medicine> getMedicine() {
+    public ArrayList<Medicine> getMedicine() {
         return medicine;
     }
 
-    public void setMedicine(ArrayList<medicine> medicine) {
+    public void setMedicine(ArrayList<Medicine> medicine) {
         this.medicine = medicine;
     }
 
-    public ArrayList<medicalTool> getMedicalTool() {
+    public ArrayList<MedicalTool> getMedicalTool() {
         return MedicalTool;
     }
 
-    public void setMedicalTool(ArrayList<medicalTool> MedicalTool) {
+    public void setMedicalTool(ArrayList<MedicalTool> MedicalTool) {
         this.MedicalTool = MedicalTool;
     }
+
+    
 
     public int getMedicinequantity() {
         return Medicinequantity;

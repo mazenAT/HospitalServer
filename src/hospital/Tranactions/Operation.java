@@ -5,7 +5,7 @@
  */
 package hospital.Tranactions;
 
-import hospital.Person.Patient;
+import hospital.Person.*;
 /**
  *
  * @author mazen

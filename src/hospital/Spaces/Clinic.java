@@ -6,6 +6,7 @@
 package hospital.Spaces;
 
 import java.util.ArrayList;
+import hospital.Person.*;
 
 /**
  *

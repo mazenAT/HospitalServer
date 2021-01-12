@@ -5,6 +5,7 @@
  */
 package hospital.Person;
 import hospital.Tranactions.Medical_Insurance;
+import hospital.Person.*;
 
 /**
  *
@@ -12,7 +13,6 @@ import hospital.Tranactions.Medical_Insurance;
  */
 
 enum BloodType{A,B,AB,O}
-enum Genders{Male,Female};
 
 public class Patient {
     
