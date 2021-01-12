@@ -69,62 +69,82 @@ MongoClientURI uri = new MongoClientURI(
         System.out.println("Connected successfully");
     }
     
-    public void insertPerson(Person P) {
-        Person.insertOne(Document.parse(gson.toJson(P)));
-        System.out.println("Person inserted.");
-    }
     
-    public void deletePerson(String email) {
-        Person.deleteOne(Filters.eq("email", email));
-    }
     
-    public Person getStudentByMail(String email) {
-        Document doc = collection.find(Filters.eq("email", email)).first();
-        Person result = gson.fromJson(doc.toJson(), Person.class);
+
+     public void insertRoom(Room R) {
+        Room.insertOne(Document.parse(gson.toJson(R)));
+        System.out.println("Room inserted.");
+    }
+      public void insertSupplier(Supplier S) {
+        Supplier.insertOne(Document.parse(gson.toJson(S)));
+        System.out.println("Supplier inserted.");
+    }
+       public void insertWarehouse(Warehouse W) {
+        Warehouse.insertOne(Document.parse(gson.toJson(W)));
+        System.out.println("Warehouse inserted.");
+    }
+       
+     public void deleteRoom(int RoomNum) {
+        Room.deleteOne(Filters.eq("RoomNum", RoomNum));
+    }
+      public void deleteSupplier(String Supplier_Name) {
+        Supplier.deleteOne(Filters.eq("Supplier_Name", Supplier_Name));
+    }   
+     public void deleteWarehouse(int WarehouseNum) {
+        Warehouse.deleteOne(Filters.eq("WarehouseNum", WarehouseNum));
+    }
+       
+     public Room getRoomByRoomNum(int RoomNum) {
+        Document doc = Room.find(Filters.eq("RoomNum",  RoomNum)).first();
+        Room result = gson.fromJson(doc.toJson(), Room.class);
         return result;
     }
-
-    public ArrayList<Person> getStudentsByYear(int year) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.eq("year", year)).into(new ArrayList<Document>());
+     public Supplier getSupplierBySupplier_Name(String Supplier_Name) {
+        Document doc = Supplier.find(Filters.eq("Supplier_Name",  Supplier_Name)).first();
+        Supplier result = gson.fromJson(doc.toJson(), Supplier.class);
+        return result;
+    }
+     public Warehouse getWarehouseByWarehouse(int WarehouseNum) {
+        Document doc = Warehouse.find(Filters.eq("WarehouseNum",  WarehouseNum)).first();
+        Warehouse result = gson.fromJson(doc.toJson(), Warehouse.class);
+        return result;
+    }
+     public ArrayList<Room> getAllRoom() {
+        ArrayList<Room> result = new ArrayList();
+        ArrayList<Document> docs = Room.find().into(new ArrayList<Document>());
         for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
+            result.add(gson.fromJson(docs.get(i).toJson(), Room.class));
+        }
+        return result;
+    }public ArrayList<Warehouse> getAllWarehouse() {
+        ArrayList<Warehouse> result = new ArrayList();
+        ArrayList<Document> docs = Warehouse.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Warehouse.class));
+        }
+        return result;
+    }public ArrayList<Supplier> getAllSupplier() {
+        ArrayList<Supplier> result = new ArrayList();
+        ArrayList<Document> docs = Supplier.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Supplier.class));
         }
         return result;
     }
-
-    public ArrayList<Person> getStudentsByYearLT(int year) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.lt("year", year)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
+      public void updateRoom(Room R) {
+        Document doc = Document.parse(gson.toJson(R));
+        Room.replaceOne(Filters.eq("RoomNum", R.getRoomNum()), doc);
     }
-
-    public ArrayList<Person> getStudentsByCourse(String courseID) {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find(Filters.eq("courses.courseID", courseID)).into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
-    }
-
-    public ArrayList<Person> getAllStudents() {
-        ArrayList<Person> result = new ArrayList();
-        ArrayList<Document> docs = collection.find().into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
-        }
-        return result;
-    }
-
-    public void updateStudent(Person s) {
+      public void updateSupplier(Supplier s) {
         Document doc = Document.parse(gson.toJson(s));
-        collection.replaceOne(Filters.eq("email", s.getEmail()), doc);
+        Supplier.replaceOne(Filters.eq("Supplier_Name", s.getSupplier_Name()), doc);
     }
-
+      public void updateWarehouse(Warehouse s) {
+        Document doc = Document.parse(gson.toJson(s));
+        Warehouse.replaceOne(Filters.eq("WarehouseNum", s.getWarehouseNum()), doc);
+    }
+     
     public void close() {
         mongo.close();
     }
