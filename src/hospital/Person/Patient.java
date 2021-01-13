@@ -6,6 +6,9 @@
 package hospital.Person;
 import hospital.Person.*;
 import java.io.Serializable;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
 
 /**
  *
@@ -13,8 +16,8 @@ import java.io.Serializable;
  */
 
 
+
 public class Patient implements Serializable{
-    
     private String BT;
     private String name;
     private String phone;
@@ -23,9 +26,10 @@ public class Patient implements Serializable{
     private String MedicalCondition;
     
 
-    public Patient() {
+    public Patient() throws RemoteException {
     }
     
+
 
     public Patient(String BT, String name, String phone, int age, String gender, String MedicalCondition) {
         this.BT = BT;
@@ -85,3 +89,4 @@ public class Patient implements Serializable{
     }
     
 }
+

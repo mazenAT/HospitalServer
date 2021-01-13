@@ -5,6 +5,11 @@
  */
 package hospital.Person;
 
+import hospital.DBConnection;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
 /**
  *
  * @author islam
@@ -12,7 +17,7 @@ package hospital.Person;
 
 
 
-public class Person {
+public class Person extends UnicastRemoteObject implements PersonInterface{
     
     private String name;
     private String email;
@@ -22,8 +27,13 @@ public class Person {
     private String address;
     private String role;
     private float salary;
+    private DBConnection db = new DBConnection();
+     
+    public Person() throws RemoteException{
+        
+    } 
 
-    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -108,20 +118,50 @@ public class Person {
     
     
     //******************** Functions **********************
+
+    /**
+     *
+     * @param P
+     */
     
-    public void RegisterP()
+    @Override
+    public void RegisterP(Person P){
+       ArrayList<Person> arr = new ArrayList();
+       boolean found = false;
+       arr = db.getAllPersons();
+       for(int i = 0; i<arr.size(); i++){
+           if(P == arr.get(i)){
+               found = true;
+           }
+           else{
+               db.insertPerson(P);
+           }
+       }
+   }
+    
+    /**
+     *
+     * @param P
+     */
+    @Override
+    public void DeleteP(Person P)
     {
-        
+        db.deletePerson(P.email);
     }
     
-    public void DeleteP()
+    /**
+     *
+     * @param P
+     */
+    @Override
+    public void UpdateP(Person P)
     {
-        
+        db.updatePerson(P);
     }
     
-    public void ModifyP()
-    {
-        
-    }
-    
+    @Override
+     public Person GetP(Person P ){
+         
+         return db.getPersonByMail(P.email);
+     }
 }
