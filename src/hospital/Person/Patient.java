@@ -7,6 +7,8 @@ package hospital.Person;
 import hospital.DBConnection;
 import hospital.Tranactions.Medical_Insurance;
 import hospital.Person.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
@@ -15,7 +17,7 @@ import hospital.Person.*;
 
 enum BloodType{A,B,AB,O}
 
-public class Patient {
+public class Patient extends UnicastRemoteObject implements PatientInterface{
     
     private BloodType BT;
     private String name;
@@ -27,11 +29,11 @@ public class Patient {
     
     DBConnection db = new DBConnection();
 
-    public Patient() {
+    public Patient() throws RemoteException {
     }
     
 
-    public Patient(BloodType BT, String name, String phone, int age, String gender, Medical_Insurance insurance, String MedicalCondition) {
+    public Patient(BloodType BT, String name, String phone, int age, String gender, Medical_Insurance insurance, String MedicalCondition) throws RemoteException{
         this.BT = BT;
         this.name = name;
         this.phone = phone;

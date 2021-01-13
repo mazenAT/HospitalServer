@@ -6,35 +6,32 @@
 package hospital.Spaces;
 
 import hospital.Person.Nurse;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 /**
  *
  * @author hmoo_
  */
-public class Ward {
+public class Ward extends UnicastRemoteObject implements WardInterface{
     private String WardId;
-private String WardName;
-private int NumOfRooms;
-private int NurseAssigned;
-private ArrayList<Room> Rooms;
-private  ArrayList<Nurse> Nurses;
+    private String WardName;
+    private int NumOfRooms;
+    private ArrayList<Room> Rooms;
+    private  ArrayList<Nurse> NurseAssigned;
 
-     public Ward(String WardId, String WardName, int NumOfRooms, int NurseAssigned, ArrayList<Room> Rooms, ArrayList<Nurse> Nurses) {
+     public Ward(String WardId, String WardName, int NumOfRooms, ArrayList<Room> Rooms, ArrayList<Nurse> NurseAssigned) throws RemoteException{
         this.WardId = WardId;
         this.WardName = WardName;
         this.NumOfRooms = NumOfRooms;
-        this.NurseAssigned = NurseAssigned;
         this.Rooms = Rooms;
-        this.Nurses = Nurses;
+        this.NurseAssigned = NurseAssigned;
     }
 
-    public Ward() {
+    public Ward() throws RemoteException{
     }
     
-    public void AssignNurseToWard (){ //Needs Modification in Code and UML#################################
-        
-    }
     public String getWardId() {
         return WardId;
     }
@@ -59,13 +56,10 @@ private  ArrayList<Nurse> Nurses;
         this.NumOfRooms = NumOfRooms;
     }
 
-    public int getNurseAssigned() {
+    public ArrayList getNurseAssigned() {
         return NurseAssigned;
     }
 
-    public void setNurseAssigned(int NurseAssigned) {
-        this.NurseAssigned = NurseAssigned;
-    }
 
     public ArrayList<Room> getRooms() {
         return Rooms;
@@ -75,16 +69,20 @@ private  ArrayList<Nurse> Nurses;
         this.Rooms = Rooms;
     }
 
-    public ArrayList<Nurse> getNurses() {
-        return Nurses;
-    }
-
-    public void setNurses(ArrayList<Nurse> Nurses) {
-        this.Nurses = Nurses;
-    }
+   
 
    
+    @Override
+    public void AssignNurseToWard (Nurse N){
+        this.NurseAssigned.add(N);
+    }
     
-    
-
+    @Override
+    public void RemoveNurseFromWard (Nurse N){
+        for(int i =0; i < this.NurseAssigned.size(); i++){
+            if(N == this.NurseAssigned.get(i)){
+                this.NurseAssigned.remove(N);
+            }
+        }
+    }
 }

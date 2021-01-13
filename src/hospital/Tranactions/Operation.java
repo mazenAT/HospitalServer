@@ -86,12 +86,7 @@ public class Operation {
         this.PatientId = PatientId;
     }
     
-    public void AssignOperationtoPatient(Patient P){
-        
-    }
-    public void AssignOperationtoDoctor(Doctor D){
-        
-    }
+   
     public void NotifyAllObservers(){
         
     }
