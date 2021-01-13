@@ -20,6 +20,10 @@ public class Medical_Insurance {
     private float cost;
     DBConnection db = new DBConnection();
 
+    public Medical_Insurance() {
+    }
+    
+    
     public Medical_Insurance(String Patient_ID, String CompanyName, boolean Status, String Type, float cost) {
         this.Patient_ID = Patient_ID;
         this.CompanyName = CompanyName;

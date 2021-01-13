@@ -27,6 +27,10 @@ public class Patient {
     
     DBConnection db = new DBConnection();
 
+    public Patient() {
+    }
+    
+
     public Patient(BloodType BT, String name, String phone, int age, String gender, Medical_Insurance insurance, String MedicalCondition) {
         this.BT = BT;
         this.name = name;
