@@ -54,8 +54,6 @@ public class DBConnection {
     public DBConnection() {
         mongo = new MongoClient(uri);// uri of the database
         hospital = mongo.getDatabase("hospital");//database name
-
-
         Person = hospital.getCollection("Person"); // Collection nam
         Clinic= hospital.getCollection("Clinic");
         Laboratory= hospital.getCollection("Laboratory");

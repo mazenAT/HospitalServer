@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  *
  * @author Ezzat
  */
-public class Receptionist extends Person implements ReceptionistManager {
+public class Receptionist extends Person{
      private String shift;
      private String quification;
      Patient P = new Patient();
@@ -44,13 +44,5 @@ public class Receptionist extends Person implements ReceptionistManager {
         return "Receptionist{" + "shift=" + shift + ", quification=" + quification + '}';
     }
 
-    @Override
-    public void registerPateint(Patient P, String Admission) throws RemoteException {
-        P.registerPateint(P, Admission);
-    }
-
-    @Override
-    public void File_Insurance_Claim(Medical_Insurance MI) throws RemoteException {
-        M.File_Insurance_Claim(MI);
-    }
+    
 }

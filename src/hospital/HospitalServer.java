@@ -13,6 +13,8 @@ import hospital.Person.*;
 import hospital.Expenditures.*;
 import hospital.Spaces.*;
 import hospital.Tranactions.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 
 
 
@@ -24,8 +26,17 @@ public class HospitalServer {
     public static void main(String[] args) {
         // TODO code application logic here
         DBConnection db = new DBConnection();
-        Person N = new Nurse("Bachelors","Nightshift","xyz",false,"7osnya","7osnya.bue@7osnya.com","0121616532", 26,"Female","obour city","nurse",2000);
-        db.insertPerson(N);
+        //Person N = new Nurse("Bachelors","Nightshift","xyz",false,"7osnya","7osnya.bue@7osnya.com","0121616532", 26,"Female","obour city","nurse",2000);
+        //db.insertPerson(N);
+        try{
+             ReceptionistManager R = new Reception();
+             Registry r = LocateRegistry.createRegistry(1066);
+             r.bind("rece", R);
+        }
+        catch(Exception e){
+            System.err.println("Exception happened");
+        }
+       
     }
     
 }
