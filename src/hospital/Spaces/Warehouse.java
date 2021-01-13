@@ -13,7 +13,8 @@ import hospital.Expenditures.*;
  * @author Lenovo
  */
 public class Warehouse {
-     private ArrayList <Medicine> medicine;
+    private int WarehouseNum;
+    private ArrayList <Medicine> medicine;
     private ArrayList <MedicalTool> MedicalTool;
     private int Medicinequantity;
     private int medicalToolquantity;
@@ -57,6 +58,14 @@ public class Warehouse {
 
     public void setMedicalToolquantity(int medicalToolquantity) {
         this.medicalToolquantity = medicalToolquantity;
+    }
+
+    public int getWarehouseNum() {
+        return WarehouseNum;
+    }
+
+    public void setWarehouseNum(int WarehouseNum) {
+        this.WarehouseNum = WarehouseNum;
     }
 
     

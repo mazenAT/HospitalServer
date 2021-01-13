@@ -4,8 +4,11 @@
  * and open the template in the editor.
  */
 package hospital.Person;
+import hospital.DBConnection;
 import hospital.Tranactions.Medical_Insurance;
 import hospital.Person.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 /**
  *
@@ -14,17 +17,23 @@ import hospital.Person.*;
 
 enum BloodType{A,B,AB,O}
 
-public class Patient {
+public class Patient extends UnicastRemoteObject implements PatientInterface{
     
     private BloodType BT;
     private String name;
     private String phone;
     private int age;
-    private Genders gender;
+    private String gender;
     private Medical_Insurance insurance;
     private String MedicalCondition;
+    
+    DBConnection db = new DBConnection();
 
-    public Patient(BloodType BT, String name, String phone, int age, Genders gender, Medical_Insurance insurance, String MedicalCondition) {
+    public Patient() throws RemoteException {
+    }
+    
+
+    public Patient(BloodType BT, String name, String phone, int age, String gender, Medical_Insurance insurance, String MedicalCondition) throws RemoteException{
         this.BT = BT;
         this.name = name;
         this.phone = phone;
@@ -66,11 +75,11 @@ public class Patient {
         this.age = age;
     }
 
-    public Genders getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Genders gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
@@ -98,5 +107,13 @@ public class Patient {
     public void GivePrescription ()
     {
     
+    }
+    public void registerPateint(Patient P,String Admission){
+        if(Admission =="outdoors"){
+            db.insertOutDoorPatient(P);
+        }else if(Admission =="indoors"){
+            db.insertInDoorPatient(P);
+        }
+            
     }
 }

@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package hospital.Person;
+import hospital.DBConnection;
 import hospital.Tranactions.Operation;
+import java.rmi.RemoteException;
+
 /**
  *
  * @author Ezzat
@@ -15,8 +18,9 @@ public class Admin extends Person {
     private Person[] person;
     private Admin AdminInsurance;
     private Operation operation;
+   
 
-    public Admin(int adminLicence, String Credintials, Person[] person, Admin AdminInsurance, Operation operation, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    private Admin(int adminLicence, String Credintials, Person[] person, Admin AdminInsurance, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
         super(name, email, phone, age, gender, address, role, salary);
         this.adminLicence = adminLicence;
         this.Credintials = Credintials;
@@ -78,4 +82,5 @@ public class Admin extends Person {
        
    }
     
+   
 }

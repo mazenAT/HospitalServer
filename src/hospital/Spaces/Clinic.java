@@ -13,9 +13,10 @@ import hospital.Person.*;
  * @author Lenovo
  */
 public class Clinic {
-     private String WorkingDays ;
+    private String WorkingDays;
+    private String ClinicNumber;
     private int OpenHours;
-    private ArrayList <Doctor> doctor;
+    private ArrayList<Doctor> doctor;
     private float checkUp_price;
 
     public Clinic(String WorkingDays, int OpenHours, ArrayList<Doctor> doctor, float checkUp_price) {
@@ -23,6 +24,14 @@ public class Clinic {
         this.OpenHours = OpenHours;
         this.doctor = doctor;
         this.checkUp_price = checkUp_price;
+    }
+
+    public String getClinicNumber() {
+        return ClinicNumber;
+    }
+
+    public void setClinicNumber(String ClinicNumber) {
+        this.ClinicNumber = ClinicNumber;
     }
 
     public String getWorkingDays() {

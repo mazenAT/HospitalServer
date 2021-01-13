@@ -6,6 +6,7 @@
 package hospital.Person;
 
 import hospital.Tranactions.Operation;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Doctor extends Person{
     private Patient[] patient;
     private Operation operation;
 
-    public Doctor(String Specialziation, String Department, String shift, Patient[] patient, Operation operation, String name, String email, String phone, int age, Genders gender, String address, String role, float salary) {
+    public Doctor(String Specialziation, String Department, String shift, Patient[] patient, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
         super(name, email, phone, age, gender, address, role, salary);
         this.Specialziation = Specialziation;
         this.Department = Department;
