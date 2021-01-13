@@ -159,4 +159,9 @@ public class Person extends UnicastRemoteObject implements PersonInterface{
         db.updatePerson(P);
     }
     
+    @Override
+     public Person GetP(Person P ){
+         
+         return db.getPersonByMail(P.email);
+     }
 }

@@ -20,5 +20,7 @@ public interface PersonInterface extends Remote{
     
     public void UpdateP(Person P)throws RemoteException;
     
+    public Person GetP(Person P)throws RemoteException;
+    
     
 }

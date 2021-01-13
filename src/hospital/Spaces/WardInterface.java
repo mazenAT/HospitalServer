@@ -17,4 +17,6 @@ import java.rmi.RemoteException;
 public interface WardInterface extends Remote{
     
     public void AssignNurseToWard (Nurse N)throws RemoteException;
+    
+    public void RemoveNurseFromWard (Nurse N)throws RemoteException;
 }
