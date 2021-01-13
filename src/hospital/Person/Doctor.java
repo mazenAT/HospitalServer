@@ -6,6 +6,7 @@
 package hospital.Person;
 
 import hospital.Tranactions.Operation;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
@@ -13,7 +14,7 @@ import java.rmi.RemoteException;
  * @author Ezzat
  */
 
-public class Doctor extends Person{
+public class Doctor extends Person implements Serializable{
     private String Specialziation;
     private String Department;
     private String shift;
