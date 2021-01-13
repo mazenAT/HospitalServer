@@ -23,7 +23,7 @@ public class Nurse extends Person{
     private String Operation;
     private boolean availability;
 
-    public Nurse(String degreeLvl, String Shift, String Operation, boolean availability, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
+    public Nurse(String degreeLvl, String Shift, String Operation, boolean availability, String name, String email, String phone, int age, String gender, String address, String role, float salary)  {
         super(name, email, phone, age, gender, address, role, salary);
         this.degreeLvl = degreeLvl;
         this.Shift = Shift;

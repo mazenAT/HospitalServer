@@ -5,10 +5,6 @@
  */
 package hospital.Person;
 
-import hospital.DBConnection;
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 
 /**
  *
@@ -28,13 +24,12 @@ public class Person{
     private String role;
     private float salary;
     
-     DBConnection db = new DBConnection();
      
     public Person(){
         
     } 
 
-    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary){
+    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -109,10 +104,9 @@ public class Person{
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
-        return "person{" + "name=" + name + ", email=" + email + ", phone=" + phone + ", age=" + age + ", gender=" + gender + ", address=" + address + ", role=" + role + ", salary=" + salary + '}';
-    }
+    
+
+    
     
     
     

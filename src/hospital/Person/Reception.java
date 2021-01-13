@@ -16,11 +16,10 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Reception extends UnicastRemoteObject implements ReceptionistManager {
     DBConnection db = new DBConnection();
+    
     public Reception() throws RemoteException {
     }
     
-    
-
     @Override
     public void registerPateint(Patient P, String Admission) throws RemoteException {
         if(Admission.equals("outdoors")){
