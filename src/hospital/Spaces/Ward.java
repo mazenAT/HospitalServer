@@ -14,11 +14,11 @@ import java.util.ArrayList;
  */
 public class Ward {
     private String WardId;
-private String WardName;
-private int NumOfRooms;
-private int NurseAssigned;
-private ArrayList<Room> Rooms;
-private  ArrayList<Nurse> Nurses;
+    private String WardName;
+    private int NumOfRooms;
+    private int NurseAssigned;
+    private ArrayList<Room> Rooms;
+    private  ArrayList<Nurse> Nurses;
 
      public Ward(String WardId, String WardName, int NumOfRooms, int NurseAssigned, ArrayList<Room> Rooms, ArrayList<Nurse> Nurses) {
         this.WardId = WardId;
