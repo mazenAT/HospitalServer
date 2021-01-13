@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package hospital.Person;
+import hospital.DBConnection;
 import hospital.Tranactions.Medical_Insurance;
 import hospital.Person.*;
 
@@ -23,6 +24,8 @@ public class Patient {
     private String gender;
     private Medical_Insurance insurance;
     private String MedicalCondition;
+    
+    DBConnection db = new DBConnection();
 
     public Patient(BloodType BT, String name, String phone, int age, String gender, Medical_Insurance insurance, String MedicalCondition) {
         this.BT = BT;
@@ -98,5 +101,13 @@ public class Patient {
     public void GivePrescription ()
     {
     
+    }
+    public void registerPateint(Patient P,String Admission){
+        if(Admission =="outdoors"){
+            db.insertOutDoorPatient(P);
+        }else if(Admission =="indoors"){
+            db.insertInDoorPatient(P);
+        }
+            
     }
 }

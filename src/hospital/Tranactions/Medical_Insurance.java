@@ -5,6 +5,7 @@
  */
 package hospital.Tranactions;
 
+import hospital.DBConnection;
 import hospital.Person.Patient;
 
 /**
@@ -17,6 +18,7 @@ public class Medical_Insurance {
     private boolean Status;
     private String Type;
     private float cost;
+    DBConnection db = new DBConnection();
 
     public Medical_Insurance(String Patient_ID, String CompanyName, boolean Status, String Type, float cost) {
         this.Patient_ID = Patient_ID;
@@ -67,10 +69,19 @@ public class Medical_Insurance {
         this.cost = cost;
     }
     
-    public void File_Insurance_Claim(Patient p){
+    public void File_Insurance_Claim(Medical_Insurance MI){
+        if(ApproveInsuranceClaim(MI)){
+         db.FilePatientInsurance(MI);
+        }
     }
     public boolean ApproveInsuranceClaim(Medical_Insurance MI){
-        return false;
+        boolean approvment;
+        if(MI.isStatus()==true){
+            approvment = true;
+        }else{
+        approvment = false;
+        }
+        return approvment;
     }
     
     

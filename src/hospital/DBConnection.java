@@ -43,6 +43,8 @@ public class DBConnection {
     private MongoCollection<Document> LaboratoryTest;
     private MongoCollection<Document> Medical_Insurance;
     private MongoCollection<Document> Operation;
+    private MongoCollection<Document> OutdoorPatient;
+    private MongoCollection<Document> IndoorPatient;
     private Gson gson = new Gson();
 
     MongoClientURI uri = new MongoClientURI(
@@ -68,6 +70,8 @@ public class DBConnection {
         LaboratoryTest = hospital.getCollection("LaboratoryTest");
         Medical_Insurance = hospital.getCollection("Medical_Insurance");
         Operation = hospital.getCollection("Operation");
+        OutdoorPatient = hospital.getCollection("OutdoorPatient");
+        IndoorPatient = hospital.getCollection("IndoorPatient");
         System.out.println("Connected successfully");
     }
 
@@ -77,6 +81,18 @@ public class DBConnection {
      public void insertPerson(Person P) {
         Person.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Person inserted.");
+    }
+      public void insertOutDoorPatient(Patient P) {
+        OutdoorPatient.insertOne(Document.parse(gson.toJson(P)));
+        System.out.println("OutPatient inserted.");
+    }
+       public void insertInDoorPatient(Patient P) {
+        IndoorPatient.insertOne(Document.parse(gson.toJson(P)));
+        System.out.println("Inpatient inserted.");
+    }
+       public void FilePatientInsurance(Medical_Insurance MI) {
+        Medical_Insurance.insertOne(Document.parse(gson.toJson(MI)));
+        System.out.println("Insurance claimed.");
     }
      public void deletePerson(String email) {
         Person.deleteOne(Filters.eq("email", email));
