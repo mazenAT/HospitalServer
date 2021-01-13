@@ -15,9 +15,9 @@ import java.util.ArrayList;
  * @author islam
  */
 
+//extends UnicastRemoteObject implements PersonInterface
 
-
-public class Person extends UnicastRemoteObject implements PersonInterface{
+public class Person{
     
     private String name;
     private String email;
@@ -27,13 +27,14 @@ public class Person extends UnicastRemoteObject implements PersonInterface{
     private String address;
     private String role;
     private float salary;
-    private DBConnection db = new DBConnection();
+    
+     DBConnection db = new DBConnection();
      
-    public Person() throws RemoteException{
+    public Person(){
         
     } 
 
-    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
+    public Person(String name, String email, String phone, int age, String gender, String address, String role, float salary){
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -121,9 +122,9 @@ public class Person extends UnicastRemoteObject implements PersonInterface{
 
     /**
      *
-     * @param P
+     * @param 
      */
-    
+    /*
     @Override
     public void RegisterP(Person P){
        ArrayList<Person> arr = new ArrayList();
@@ -143,7 +144,7 @@ public class Person extends UnicastRemoteObject implements PersonInterface{
      *
      * @param P
      */
-    @Override
+    /*@Override
     public void DeleteP(Person P)
     {
         db.deletePerson(P.email);
@@ -153,7 +154,7 @@ public class Person extends UnicastRemoteObject implements PersonInterface{
      *
      * @param P
      */
-    @Override
+    /*@Override
     public void UpdateP(Person P)
     {
         db.updatePerson(P);
@@ -164,4 +165,5 @@ public class Person extends UnicastRemoteObject implements PersonInterface{
          
          return db.getPersonByMail(P.email);
      }
+     */
 }

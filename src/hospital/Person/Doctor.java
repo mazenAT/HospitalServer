@@ -8,6 +8,7 @@ package hospital.Person;
 import hospital.Tranactions.Operation;
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,10 +19,11 @@ public class Doctor extends Person implements Serializable{
     private String Specialziation;
     private String Department;
     private String shift;
-    private Patient[] patient;
+    private  ArrayList<Patient> patient;
     private Operation operation;
 
-    public Doctor(String Specialziation, String Department, String shift, Patient[] patient, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
+    
+    public Doctor(String Specialziation, String Department, String shift, ArrayList<Patient> patient, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
         super(name, email, phone, age, gender, address, role, salary);
         this.Specialziation = Specialziation;
         this.Department = Department;
@@ -29,6 +31,8 @@ public class Doctor extends Person implements Serializable{
         this.patient = patient;
         this.operation = operation;
     }
+
+   
 
     public String getSpecialziation() {
         return Specialziation;
@@ -54,13 +58,15 @@ public class Doctor extends Person implements Serializable{
         this.shift = shift;
     }
 
-    public Patient[] getPatient() {
+    public ArrayList<Patient> getPatient() {
         return patient;
     }
 
-    public void setPatient(Patient[] patient) {
+    public void setPatient(ArrayList<Patient> patient) {
         this.patient = patient;
     }
+
+   
 
     public Operation getOperation() {
         return operation;
@@ -78,13 +84,14 @@ public class Doctor extends Person implements Serializable{
     
     
     
+    
     // functions here
     
     public Operation CheckOperation(){
         return operation;
     }
-    public  Patient[] CheckPatients(){
-        return patient;
+    public  void CheckPatients(){
+        
     }
     
     public void Update(){
