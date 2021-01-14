@@ -11,6 +11,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +46,7 @@ public class DBConnection {
     private MongoCollection<Document> Operation;
     private MongoCollection<Document> OutdoorPatient;
     private MongoCollection<Document> IndoorPatient;
+    private MongoCollection<Document> HospitalBudget;
     private Gson gson = new Gson();
 
     MongoClientURI uri = new MongoClientURI(
@@ -70,6 +72,7 @@ public class DBConnection {
         Operation = hospital.getCollection("Operation");
         OutdoorPatient = hospital.getCollection("OutdoorPatient");
         IndoorPatient = hospital.getCollection("IndoorPatient");
+        HospitalBudget = hospital.getCollection("HospitalBudget");
         System.out.println("Connected successfully");
     }
 
@@ -324,6 +327,40 @@ public class DBConnection {
         Document doc = Document.parse(gson.toJson(s));
         Warehouse.replaceOne(Filters.eq("WarehouseNum", s.getWarehouseNum()), doc);
     }
+      //*************************** Budget Functions *****************************
+
+    public void insertHospBudget(HospitalBudget h) {
+        HospitalBudget.insertOne(Document.parse(gson.toJson(h)));
+        System.out.println("Hospital Budget inserted.");
+    }
+
+    public void updateIncome(String name,double x) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("income",x));
+    }
+    
+    public void updateWagesEx(String name,double x) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("wagesExpenditures",x));
+    }
+    
+    public void updateEquipmentEx(String name,double x) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("EquipmentExpenditures",x));
+    }
+    
+    public void updateMedicalToolsEx(String name,double x) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("medicalToolsExpenditures",x));
+    }
+    
+    public void updateMedicineEx(String name,double x) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("medicineExpenditures",x));
+    }
+
+    
+    public HospitalBudget getBudget() {
+        Document doc = HospitalBudget.find(Filters.eq("HospName", "El-Amal")).first();
+        HospitalBudget result = gson.fromJson(doc.toJson(), HospitalBudget.class);
+        return result;
+    }
+    
      
     public void close() {
         mongo.close();
