@@ -39,6 +39,7 @@ public class HospitalServer {
        try{
             
              ReceptionistManager R = new Reception();
+
             PersonInterface p = new PersonHandler();
             Budget a = new HBController();
 
@@ -46,6 +47,12 @@ public class HospitalServer {
             /* r.bind("rece", R);
              r.bind("budget", a);*/
              r.bind("per", p);
+             ChemistInterface C = new ChemistHandler();
+             BillInterface B = new BillHandler();
+
+             r.bind("chem",C);
+
+
              //Person m = new Doctor("Neurologist","Neuro-dept","day",null,null,"Mohamed","mohamed@mohamed.com","01000214546",30,"Male","helwan","Doctor",12500);
              //db.insertPerson(m);
          

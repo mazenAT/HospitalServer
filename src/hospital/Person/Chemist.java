@@ -7,27 +7,33 @@ package hospital.Person;
 
 import hospital.Tranactions.LaboratoryTest;
 import hospital.Person.*;
+
 import java.io.Serializable;
+import hospital.Person.Patient;
+import hospital.Person.Person;
+import java.rmi.RemoteException;
+
 import java.util.ArrayList;
 /**
  *
  * @author islam
  */
 
+
 public class Chemist extends Person implements Serializable{
+
     
     private String JobDegree;
     private String Shift;
+
     private ArrayList<LaboratoryTest> LT;
 
     public Chemist(String JobDegree, String Shift, ArrayList<LaboratoryTest> LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
-        super(name, email, phone, age, gender, address, role, salary);
+       super(name, email, phone, age, gender, address, role, salary);
         this.JobDegree = JobDegree;
         this.Shift = Shift;
         this.LT = LT;
     }
-
-    
 
     public String getDegreeLvl() {
         return JobDegree;
@@ -49,15 +55,28 @@ public class Chemist extends Person implements Serializable{
         return LT;
     }
 
+
     public void setLT(LaboratoryTest LT) {
         this.LT.add(LT);
-    }
+   }
 
+    
+
+
+
+    
+
+
+    
     @Override
     public String toString() {
         return "Chemist{" + "degreeLvl=" + JobDegree + ", Shift=" + Shift + ", LT=" + LT + '}';
     }
     
+
     
+    
+    
+
     
 }
