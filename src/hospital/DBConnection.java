@@ -81,7 +81,7 @@ public class DBConnection {
 
     }
 
-    public void insertPerson(Person P) {
+      public void insertPerson(Person P) {
         Person.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Person inserted.");
     }

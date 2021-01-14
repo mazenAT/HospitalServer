@@ -7,6 +7,7 @@ package hospital.Person;
 
 import hospital.Tranactions.LaboratoryTest;
 import hospital.Person.*;
+import java.rmi.RemoteException;
 /**
  *
  * @author islam
@@ -18,7 +19,7 @@ public class Chemist extends Person{
     private String Shift;
     private LaboratoryTest[] LT;
 
-    public Chemist(String degreeLvl, String Shift, LaboratoryTest[] LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+    public Chemist(String degreeLvl, String Shift, LaboratoryTest[] LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
         super(name, email, phone, age, gender, address, role, salary);
         this.degreeLvl = degreeLvl;
         this.Shift = Shift;
