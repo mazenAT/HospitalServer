@@ -4,29 +4,20 @@
  * and open the template in the editor.
  */
 package hospital.Person;
-import hospital.DBConnection;
 import hospital.Tranactions.Operation;
-import java.rmi.RemoteException;
-
+import java.io.Serializable;
 /**
  *
  * @author Ezzat
  */
-public class Admin extends Person {
+public class Admin extends Person implements Serializable{
     private int adminLicence;
     private String Credintials;
-    private Person[] person;
-    private Admin AdminInsurance;
-    private Operation operation;
-   
+    private static Admin AdminInsurance = null;
+    
 
-    private Admin(int adminLicence, String Credintials, Person[] person, Admin AdminInsurance, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
-        super(name, email, phone, age, gender, address, role, salary);
-        this.adminLicence = adminLicence;
-        this.Credintials = Credintials;
-        this.person = person;
-        this.AdminInsurance = AdminInsurance;
-        this.operation = operation;
+    private Admin() {
+      
     }
 
     public int getAdminLicence() {
@@ -45,42 +36,21 @@ public class Admin extends Person {
         this.Credintials = Credintials;
     }
 
-    public Person[] getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person[] person) {
-        this.person = person;
-    }
-
-    public Admin getAdminInsurance() {
+    public static Admin getAdminInsurance() {
         return AdminInsurance;
     }
 
-    public void setAdminInsurance(Admin AdminInsurance) {
-        this.AdminInsurance = AdminInsurance;
+    public static void setAdminInsurance(Admin AdminInsurance) {
+        Admin.AdminInsurance = AdminInsurance;
     }
 
-    public Operation getOperation() {
-        return operation;
-    }
 
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
-
-    @Override
-    public String toString() {
-        return "Admin{" + "adminLicence=" + adminLicence + ", Credintials=" + Credintials + ", person=" + person + ", AdminInsurance=" + AdminInsurance + ", operation=" + operation + '}';
-    }
-
-   public Admin GetInstance(){
+   public static Admin GetInstance(){
+        if (AdminInsurance == null) 
+            AdminInsurance = new Admin(); 
        return AdminInsurance;
    }
     
-   public void Update(){
-       
-   }
-    
    
+    
 }

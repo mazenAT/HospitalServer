@@ -80,7 +80,14 @@ public class DBConnection {
         System.out.println("Connected successfully");
 
     }
-
+    
+    public boolean PersonAlreadyExists(Person p){
+        Document d = Person.find(Filters.eq("email", p.getEmail())).first();
+        if(d == null)
+            return false;
+        else
+            return true;
+    }
       public void insertPerson(Person P) {
         Person.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Person inserted.");
@@ -103,11 +110,13 @@ public class DBConnection {
 
     public void deletePerson(String email) {
         Person.deleteOne(Filters.eq("email", email));
+        System.out.println("Person is Deleted.");
     }
 
     public void updatePerson(Person P) {
         Document doc = Document.parse(gson.toJson(P));
         Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
+        System.out.println("Person is Updated.");
     }
 
     public Person getPersonByMail(String email) {
