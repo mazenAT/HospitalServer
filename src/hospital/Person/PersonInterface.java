@@ -14,7 +14,7 @@ import java.rmi.RemoteException;
  */
 public interface PersonInterface extends Remote{
     
-    public void RegisterP(Person P)throws RemoteException;
+    public boolean RegisterP(Person P)throws RemoteException;
     
     public void DeleteP(Person P)throws RemoteException;
     

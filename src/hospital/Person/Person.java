@@ -11,9 +11,7 @@ package hospital.Person;
  * @author islam
  */
 
-//extends UnicastRemoteObject implements PersonInterface
-
-public class Person{
+public class Person {
     
     private String name;
     private String email;
@@ -103,61 +101,4 @@ public class Person{
     public void setSalary(float salary) {
         this.salary = salary;
     }
-
-    
-
-    
-    
-    
-    
-    
-    
-    //******************** Functions **********************
-
-    /**
-     *
-     * @param 
-     */
-    /*
-    @Override
-    public void RegisterP(Person P){
-       ArrayList<Person> arr = new ArrayList();
-       boolean found = false;
-       arr = db.getAllPersons();
-       for(int i = 0; i<arr.size(); i++){
-           if(P == arr.get(i)){
-               found = true;
-           }
-           else{
-               db.insertPerson(P);
-           }
-       }
-   }
-    
-    /**
-     *
-     * @param P
-     */
-    /*@Override
-    public void DeleteP(Person P)
-    {
-        db.deletePerson(P.email);
-    }
-    
-    /**
-     *
-     * @param P
-     */
-    /*@Override
-    public void UpdateP(Person P)
-    {
-        db.updatePerson(P);
-    }
-    
-    @Override
-     public Person GetP(Person P ){
-         
-         return db.getPersonByMail(P.email);
-     }
-     */
 }
