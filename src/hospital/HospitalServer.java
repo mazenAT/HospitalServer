@@ -40,12 +40,16 @@ public class HospitalServer {
        try{
              ReceptionistManager R = new Reception();
              //PersonInterface p = new Person();
-            Budget a = new HBController();
+             ChemistInterface C = new ChemistHandler();
+             Budget a = new HBController();
+             BillInterface B = new BillHandler();
 
              Registry r = LocateRegistry.createRegistry(1010);
              r.bind("rece", R);
              //r.bind("per", p);
-              r.bind("budget", a);
+             r.bind("chem",C);
+             r.bind("budget", a);
+             r.bind("bill", B);
 
              //Person m = new Doctor("Neurologist","Neuro-dept","day",null,null,"Mohamed","mohamed@mohamed.com","01000214546",30,"Male","helwan","Doctor",12500);
              //db.insertPerson(m);

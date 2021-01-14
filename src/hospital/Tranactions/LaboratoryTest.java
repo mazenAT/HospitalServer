@@ -22,6 +22,10 @@ public class LaboratoryTest {
         this.PateintName = PateintName;
     }
 
+    public LaboratoryTest() {
+        
+    }
+
 
     public String getTestType() {
         return TestType;
