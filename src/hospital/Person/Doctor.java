@@ -19,11 +19,10 @@ public class Doctor extends Person implements Serializable{
     private String Specialziation;
     private String Department;
     private String shift;
-    private  ArrayList<Patient> patient;
+    private ArrayList<Patient> patient;
     private Operation operation;
 
-    
-    public Doctor(String Specialziation, String Department, String shift, ArrayList<Patient> patient, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
+    public Doctor(String Specialziation, String Department, String shift, ArrayList<Patient> patient, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.Specialziation = Specialziation;
         this.Department = Department;
@@ -62,11 +61,13 @@ public class Doctor extends Person implements Serializable{
         return patient;
     }
 
-    public void setPatient(ArrayList<Patient> patient) {
-        this.patient = patient;
+    public void setPatient(Patient patient) {
+        this.patient.add(patient);
     }
 
-   
+    
+
+    
 
     public Operation getOperation() {
         return operation;
@@ -84,15 +85,15 @@ public class Doctor extends Person implements Serializable{
     
     
     
-    
     // functions here
     
-    public Operation CheckOperation(){
-        return operation;
+    public boolean CheckOperation(){
+        boolean found = false;
+        if(this.operation != null)
+            found = true;
+        return found;
     }
-    public  void CheckPatients(){
-        
-    }
+    
     
     public void Update(){
         

@@ -17,14 +17,18 @@ public class HospitalBudget {
     private double EquipmentExpenditures;
     private double medicalToolsExpenditures;
     private double medicineExpenditures;
+    private float intial_treasury;
+    private float Current_treasury;
 
-    public HospitalBudget(String HospName, double income, double wagesExpenditures, double EquipmentExpenditures, double medicalToolsExpenditures, double medicineExpenditures) {
+    public HospitalBudget(String HospName, double income, double wagesExpenditures, double EquipmentExpenditures, double medicalToolsExpenditures, double medicineExpenditures, float intial_treasury, float Current_treasury) {
         this.HospName = HospName;
         this.income = income;
         this.wagesExpenditures = wagesExpenditures;
         this.EquipmentExpenditures = EquipmentExpenditures;
         this.medicalToolsExpenditures = medicalToolsExpenditures;
         this.medicineExpenditures = medicineExpenditures;
+        this.intial_treasury = intial_treasury;
+        this.Current_treasury = Current_treasury;
     }
 
     public String getHospName() {
@@ -75,11 +79,22 @@ public class HospitalBudget {
         this.medicineExpenditures = medicineExpenditures;
     }
 
-    @Override
-    public String toString() {
-        return "HospitalBudget{" + "HospName=" + HospName + ", income=" + income + ", wagesExpenditures=" + wagesExpenditures + ", EquipmentExpenditures=" + EquipmentExpenditures + ", medicalToolsExpenditures=" + medicalToolsExpenditures + ", medicineExpenditures=" + medicineExpenditures + '}';
+    public float getIntial_treasury() {
+        return intial_treasury;
     }
 
+    public void setIntial_treasury(float intial_treasury) {
+        this.intial_treasury = intial_treasury;
+    }
+
+    public float getCurrent_treasury() {
+        return Current_treasury;
+    }
+
+    public void setCurrent_treasury(float Current_treasury) {
+        this.Current_treasury = Current_treasury;
+    }
+    
     
     
 }

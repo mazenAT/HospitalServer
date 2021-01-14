@@ -6,17 +6,18 @@
 package hospital.Person;
 
 import hospital.Tranactions.Medical_Insurance;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 
 /**
  *
  * @author Ezzat
  */
-public class Receptionist extends Person{
+public class Receptionist extends Person implements Serializable{
      private String shift;
      private String quification;
-     Patient P = new Patient();
-     Medical_Insurance M =new Medical_Insurance();
+     
+     
     public Receptionist(String shift, String quification, String name, String email, String phone, int age, String gender, String address, String role, float salary) throws RemoteException {
         super(name, email, phone, age, gender, address, role, salary);
         this.shift = shift;

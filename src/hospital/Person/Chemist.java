@@ -7,35 +7,40 @@ package hospital.Person;
 
 import hospital.Tranactions.LaboratoryTest;
 import hospital.Person.*;
+
+import java.io.Serializable;
 import hospital.Person.Patient;
 import hospital.Person.Person;
 import java.rmi.RemoteException;
+
 import java.util.ArrayList;
 /**
  *
  * @author islam
  */
 
-public class Chemist extends Person {
-    
-    private String degreeLvl;
-    private String Shift;
-    private ArrayList <LaboratoryTest> LT;
 
-    public Chemist(String degreeLvl, String Shift, ArrayList<LaboratoryTest> LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
-        super(name, email, phone, age, gender, address, role, salary);
-        this.degreeLvl = degreeLvl;
+public class Chemist extends Person implements Serializable{
+
+    
+    private String JobDegree;
+    private String Shift;
+
+    private ArrayList<LaboratoryTest> LT;
+
+    public Chemist(String JobDegree, String Shift, ArrayList<LaboratoryTest> LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+       super(name, email, phone, age, gender, address, role, salary);
+        this.JobDegree = JobDegree;
         this.Shift = Shift;
         this.LT = LT;
     }
 
-
     public String getDegreeLvl() {
-        return degreeLvl;
+        return JobDegree;
     }
 
-    public void setDegreeLvl(String degreeLvl) {
-        this.degreeLvl = degreeLvl;
+    public void setDegreeLvl(String JobDegree) {
+        this.JobDegree = JobDegree;
     }
 
     public String getShift() {
@@ -50,9 +55,10 @@ public class Chemist extends Person {
         return LT;
     }
 
-    public void setLT(ArrayList<LaboratoryTest> LT) {
-        this.LT = LT;
-    }
+
+    public void setLT(LaboratoryTest LT) {
+        this.LT.add(LT);
+   }
 
     
 
@@ -64,7 +70,7 @@ public class Chemist extends Person {
     
     @Override
     public String toString() {
-        return "Chemist{" + "degreeLvl=" + degreeLvl + ", Shift=" + Shift + ", LT=" + LT + '}';
+        return "Chemist{" + "degreeLvl=" + JobDegree + ", Shift=" + Shift + ", LT=" + LT + '}';
     }
     
 
