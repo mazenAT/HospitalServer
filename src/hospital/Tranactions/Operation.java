@@ -6,6 +6,7 @@
 package hospital.Tranactions;
 
 import hospital.Person.*;
+import java.util.ArrayList;
 /**
  *
  * @author mazen
@@ -13,22 +14,25 @@ import hospital.Person.*;
 public class Operation {
     private float cost;
     private String time;
+    private String type;
     private String AssignedNurse;
     private String AssignedDoctor;
-    private int wardId;
     private int RoomNumber;
-    private int PatientId;
+    private String PatientName;
+    private ArrayList<Doctor> Observers1 = new ArrayList<Doctor>();
+    private ArrayList<Accountant> Observers2 = new ArrayList<Accountant>();
+    private ArrayList<Nurse> Observers3 = new ArrayList<Nurse>();
 
-    public Operation(float cost, String time, String AssignedNurse, String AssignedDoctor, int wardId, int RoomNumber, int PatientId) {
+    public Operation(float cost, String time, String type,int RoomNumber) {
         this.cost = cost;
         this.time = time;
-        this.AssignedNurse = AssignedNurse;
-        this.AssignedDoctor = AssignedDoctor;
-        this.wardId = wardId;
+        this.type = type;
         this.RoomNumber = RoomNumber;
-        this.PatientId = PatientId;
+        
     }
 
+  
+    
 
     public float getCost() {
         return cost;
@@ -44,6 +48,15 @@ public class Operation {
 
     public void setTime(String time) {
         this.time = time;
+        for(int i = 0; i <this.Observers1.size(); i++){
+            this.Observers1.get(i).update(this.time,this.type);
+        }
+        for(int i = 0; i <this.Observers2.size(); i++){
+            this.Observers2.get(i).update(this.time,this.type);
+        }
+        for(int i = 0; i <this.Observers3.size(); i++){
+            this.Observers3.get(i).update(this.time,this.type);
+        }
     }
 
     public String getAssignedNurse() {
@@ -62,13 +75,6 @@ public class Operation {
         this.AssignedDoctor = AssignedDoctor;
     }
 
-    public int getWardId() {
-        return wardId;
-    }
-
-    public void setWardId(int wardId) {
-        this.wardId = wardId;
-    }
 
     public int getRoomNumber() {
         return RoomNumber;
@@ -78,17 +84,53 @@ public class Operation {
         this.RoomNumber = RoomNumber;
     }
 
-    public int getPatientId() {
-        return PatientId;
+    public String getPatientName() {
+        return PatientName;
     }
 
-    public void setPatientId(int PatientId) {
-        this.PatientId = PatientId;
+    public void setPatientName(String PatientName) {
+        this.PatientName = PatientName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+        for(int i = 0; i <this.Observers1.size(); i++){
+            this.Observers1.get(i).update(this.time,this.type);
+        }
+        for(int i = 0; i <this.Observers2.size(); i++){
+            this.Observers2.get(i).update(this.time,this.type);
+        }
+        for(int i = 0; i <this.Observers3.size(); i++){
+            this.Observers3.get(i).update(this.time,this.type);
+        }
+    }
+
+    public void addObserver1(Doctor d) {
+        this.Observers1.add(d);
+    }
+
+    public void removeObserver1(Doctor d) {
+        this.Observers1.remove(d);
     }
     
-   
-    public void NotifyAllObservers(){
-        
+    public void addObserver2(Accountant ac) {
+        this.Observers2.add(ac);
     }
+
+    public void removeObserver2(Accountant ac) {
+        this.Observers2.remove(ac);
+    }
+ public void addObserver3(Nurse n) {
+        this.Observers3.add(n);
+    }
+
+    public void removeObserver3(Nurse n) {
+        this.Observers3.remove(n);
+    }
+
     
 }
