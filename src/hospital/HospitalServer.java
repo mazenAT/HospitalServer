@@ -48,7 +48,7 @@ public class HospitalServer {
             Budget a = new HBController();
 
              Registry r = LocateRegistry.createRegistry(1010);
-            /* r.bind("rece", R);
+             r.bind("rece", R);/*
              r.bind("budget", a);*/
              r.bind("per", p);
              ChemistInterface C = new ChemistHandler();
@@ -58,9 +58,9 @@ public class HospitalServer {
 
              OperationInterface op = new Operation();
              r.bind("oper", op); 
-             //Person m = new Doctor("Neurologist","Neuro-dept","day",null,null,"Mohamed","mohamed@mohamed.com","01000214546",30,"Male","helwan","Doctor",12500);
-             //db.insertPerson(m);
-         
+             //Person m = new Doctor("Neurologist","Neuro-dept","day","Mohamed","mohamed@mohamed.com","11111",30,"Male","helwan","Doctor",12500);
+            // db.insertPerson(m);
+            
              
              System.out.println("Server Is Ready!!!!");
         }

@@ -20,18 +20,18 @@ public class Doctor extends Person implements Serializable,Observer{
     private String Specialziation;
     private String Department;
     private String shift;
-    private ArrayList<Patient> patient;
+    private ArrayList<Patient> patient = new ArrayList<Patient>();
     private String OperationTime;
     private String OperationTimeType ;
 
  
 
-    public Doctor(String Specialziation, String Department, String shift, ArrayList<Patient> patient, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+    public Doctor(String Specialziation, String Department, String shift, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.Specialziation = Specialziation;
         this.Department = Department;
         this.shift = shift;
-        this.patient = patient;
+        
     }
 
 
@@ -76,4 +76,5 @@ public class Doctor extends Person implements Serializable,Observer{
         DB.db.updatePerson(this);
         
     }
+  
 }
