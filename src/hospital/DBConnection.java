@@ -131,7 +131,8 @@ public class DBConnection {
         Person.deleteOne(Filters.eq("email", email));
         System.out.println("Person is Deleted.");
     }
-
+   
+     
     public void updatePerson(Person P) {
         Document doc = Document.parse(gson.toJson(P));
         Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
@@ -143,6 +144,25 @@ public class DBConnection {
         Person result = gson.fromJson(doc.toJson(), Person.class);
         return result;
     }
+    
+    public Admin getAdmin() {
+        Document doc = Person.find(Filters.eq("role", "Admin")).first();
+        Admin result = gson.fromJson(doc.toJson(), Admin.class);
+        return result;
+    }
+    
+    public Doctor getDoctorByMail(String email) {
+        Document doc = Person.find(Filters.eq("email", email)).first();
+        Doctor result = gson.fromJson(doc.toJson(), Doctor.class);
+        return result;
+    }
+   
+    
+    public Nurse getNurseByMail(String email) {
+        Document doc = Person.find(Filters.eq("email", email)).first();
+        Nurse result = gson.fromJson(doc.toJson(), Nurse.class);
+        return result;
+    }
 
     public ArrayList<Person> getAllPersons() {
         ArrayList<Person> result = new ArrayList();
@@ -151,6 +171,28 @@ public class DBConnection {
             result.add(gson.fromJson(docs.get(i).toJson(), Person.class));
         }
         return result;
+    }
+    
+   
+  
+
+    public ArrayList<Doctor> getAllDoctors( ) {
+    ArrayList<Doctor> result = new ArrayList();
+    ArrayList<Document> docs = Person.find(Filters.eq("role", "Doctor")).into(new ArrayList<Document>());
+    for (int i = 0; i < docs.size(); i++) {
+        result.add(gson.fromJson(docs.get(i).toJson(), Doctor.class));
+    }
+    return result;
+    }
+
+
+    public ArrayList<Nurse> getAllNurses( ) {
+    ArrayList<Nurse> result = new ArrayList();
+    ArrayList<Document> docs = Person.find(Filters.eq("role", "Nurse")).into(new ArrayList<Document>());
+    for (int i = 0; i < docs.size(); i++) {
+        result.add(gson.fromJson(docs.get(i).toJson(), Nurse.class));
+    }
+    return result;
     }
 
     public void insertRoom(Room R) {
@@ -416,6 +458,21 @@ public ArrayList<Bill> getAllBills() {
         return result;
     }
     
+     public void insertOperation(Operation op) {
+        Operation.insertOne(Document.parse(gson.toJson(op)));
+        System.out.println("Operation inserted.");
+    }
+     
+    public void updateOperation(Operation op) {
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("cost",op.getCost()));
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("time",op.getTime()));
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("type",op.getType()));
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("AssignedNurse",op.getAssignedNurse()));
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("AssignedDoctor",op.getAssignedDoctor()));
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("RoomNumber",op.getRoomNumber()));
+        Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("PatientName",op.getRoomNumber()));
+        System.out.println("Operation is Updated.");
+    }
 
     public void close() {
         mongo.close();

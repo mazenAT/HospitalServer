@@ -47,5 +47,30 @@ public class PersonHandler extends UnicastRemoteObject implements PersonInterfac
          
          return db.getPersonByMail(email);
      }
+     
     
+    @Override
+      public ArrayList<Doctor> getAllDoctors(){
+          return db.getAllDoctors();
+      }
+    
+    @Override
+    public ArrayList<Nurse> getAllNurses(){
+        return db.getAllNurses();
+    }
+    
+    @Override
+     public Doctor getDoctorByMail(String email) {
+         return db.getDoctorByMail(email);
+     }
+    
+    @Override
+    public Nurse getNurseByMail(String email){
+        return db.getNurseByMail(email);
+    }
+    
+    @Override
+    public Admin getAdmin(){
+        return db.getAdmin();
+    }
 }

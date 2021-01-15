@@ -33,9 +33,7 @@ public class HospitalServer {
         //db.insertPerson(N);
         //DB.db.insertPerson(N);
         
-       Operation op = new Operation(454,"day","urgent",12);
-       op.addObserver3(N);
-       op.setTime("DayTime");
+       
        
        
         //Person N = new Nurse("Bachelors","Nightshift","xyz",false,"7osnya","7osnya.bue@7osnya.com","0121616532", 26,"Female","obour city","nurse",2000);
@@ -58,7 +56,8 @@ public class HospitalServer {
 
              r.bind("chem",C);
 
-
+             OperationInterface op = new Operation();
+             r.bind("oper", op); 
              //Person m = new Doctor("Neurologist","Neuro-dept","day",null,null,"Mohamed","mohamed@mohamed.com","01000214546",30,"Male","helwan","Doctor",12500);
              //db.insertPerson(m);
          
