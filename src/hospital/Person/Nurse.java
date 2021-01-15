@@ -5,7 +5,7 @@
  */
 package hospital.Person;
 
-import java.rmi.RemoteException;
+import java.io.Serializable;
 
 /**
  *
@@ -15,28 +15,28 @@ import java.rmi.RemoteException;
 
 
 
-public class Nurse extends Person{
+public class Nurse extends Person implements Serializable{
    
     
-    private String degreeLvl;
+    private String JobDegree;
     private String Shift;
     private String Operation;
     private boolean availability;
 
-    public Nurse(String degreeLvl, String Shift, String Operation, boolean availability, String name, String email, String phone, int age, String gender, String address, String role, float salary)  {
+    public Nurse(String degreeLvl, String Shift, String Operation, boolean availability, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
-        this.degreeLvl = degreeLvl;
+        this.JobDegree = degreeLvl;
         this.Shift = Shift;
         this.Operation = Operation;
         this.availability = availability;
     }
 
     public String getDegreeLvl() {
-        return degreeLvl;
+        return JobDegree;
     }
 
     public void setDegreeLvl(String degreeLvl) {
-        this.degreeLvl = degreeLvl;
+        this.JobDegree = degreeLvl;
     }
 
     public String getShift() {
@@ -65,19 +65,6 @@ public class Nurse extends Person{
     
     
     //******************** Functions **********************
-    
-    public boolean checkAvailability()
-    {
-        return availability;
-        
-    }
-    
-    
-    public void changeShift()
-    {
-        
-    }
-    
     
     public void update()
     {

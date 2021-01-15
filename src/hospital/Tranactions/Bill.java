@@ -5,6 +5,10 @@
  */
 package hospital.Tranactions;
 
+import hospital.Tranactions.BillInterface;
+import hospital.Tranactions.LaboratoryTest;
+import hospital.Tranactions.Operation;
+import java.rmi.RemoteException;
 import java.util.Date;
 
 /**
@@ -16,7 +20,10 @@ public class Bill {
     private Date Date;
     private String PateintName;
     private float TotalMoney;
-    private Bill BillDetails;
+    private Bill BillDetails;         
+
+    public Bill() {
+    }
 
     public Bill(String BillID, Date Date, String PateintName, float TotalMoney) {
         this.BillID = BillID;
@@ -60,15 +67,11 @@ public class Bill {
     public Bill getBillDetails() {
         return BillDetails;
     }
+
+   
     
-    public Bill GenerateTestBill(LaboratoryTest L){
-        
-        
-        return null;
-    }
-    public Bill OperationBill(Operation O){
-        
-        
-        return null;
-    }
+   
+    
 }
+
+

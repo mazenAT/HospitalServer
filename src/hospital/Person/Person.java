@@ -5,13 +5,15 @@
  */
 package hospital.Person;
 
+import java.io.Serializable;
+
 
 /**
  *
  * @author islam
  */
 
-public class Person {
+public class Person implements Serializable{
     
     private String name;
     private String email;
@@ -101,4 +103,11 @@ public class Person {
     public void setSalary(float salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "name=" + name + ", email=" + email + ", phone=" + phone + ", age=" + age + ", gender=" + gender + ", address=" + address + ", role=" + role + ", salary=" + salary + '}';
+    }
+    
+    
 }

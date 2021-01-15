@@ -82,7 +82,14 @@ public class DBConnection {
         System.out.println("Connected successfully");
 
     }
-
+    
+    public boolean PersonAlreadyExists(Person p){
+        Document d = Person.find(Filters.eq("email", p.getEmail())).first();
+        if(d == null)
+            return false;
+        else
+            return true;
+    }
       public void insertPerson(Person P) {
         Person.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Person inserted.");
@@ -97,7 +104,26 @@ public class DBConnection {
         IndoorPatient.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Inpatient inserted.");
     }
-
+    public void insertLaboratoryTest(LaboratoryTest L) {
+        LaboratoryTest.insertOne(Document.parse(gson.toJson(L)));
+        System.out.println("LaboratoryTest inserted.");
+    }
+    public ArrayList<Patient> getAllPatient() {
+        ArrayList<Patient> result = new ArrayList();
+        ArrayList<Document> docs = IndoorPatient.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Patient.class));
+        }
+        return result;
+    }
+   public ArrayList<LaboratoryTest> getAllLaboratoryTest() {
+        ArrayList<LaboratoryTest> result = new ArrayList();
+        ArrayList<Document> docs = LaboratoryTest.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), LaboratoryTest.class));
+        }
+        return result;
+    }
     public void FilePatientInsurance(Medical_Insurance MI) {
         Medical_Insurance.insertOne(Document.parse(gson.toJson(MI)));
         System.out.println("Insurance claimed.");
@@ -105,11 +131,13 @@ public class DBConnection {
 
     public void deletePerson(String email) {
         Person.deleteOne(Filters.eq("email", email));
+        System.out.println("Person is Deleted.");
     }
 
     public void updatePerson(Person P) {
         Document doc = Document.parse(gson.toJson(P));
         Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
+        System.out.println("Person is Updated.");
     }
 
     public Person getPersonByMail(String email) {
@@ -150,7 +178,14 @@ public class DBConnection {
         Warehouse.insertOne(Document.parse(gson.toJson(W)));
         System.out.println("Warehouse inserted.");
     }
+    public void insertBill(Bill B) {
+        Bill.insertOne(Document.parse(gson.toJson(B)));
+        System.out.println("Bill inserted.");
+    }
 
+    public void deleteBill(int BillID) {
+        Bill.deleteOne(Filters.eq("BillID", BillID));
+    }
     public void deleteRoom(int RoomNum) {
         Room.deleteOne(Filters.eq("RoomNum", RoomNum));
     }
@@ -214,7 +249,15 @@ public class DBConnection {
         }
         return result;
     }
-
+public ArrayList<Bill> getAllBills() {
+        ArrayList<Bill> result = new ArrayList();
+        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
+        }
+        return result;
+    }
+    
     public ArrayList<Warehouse> getAllWarehouse() {
         ArrayList<Warehouse> result = new ArrayList();
         ArrayList<Document> docs = Warehouse.find().into(new ArrayList<Document>());

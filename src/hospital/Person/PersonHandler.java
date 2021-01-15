@@ -18,25 +18,16 @@ public class PersonHandler extends UnicastRemoteObject implements PersonInterfac
 
     
     DBConnection db =new DBConnection();
+    
     public PersonHandler() throws RemoteException {
     }
     
-    
-
      @Override
-    public boolean RegisterP(Person P){
-       ArrayList<Person> arr = new ArrayList();
-       boolean found = false;
-       arr = db.getAllPersons();
-       for(int i = 0; i<arr.size(); i++){
-           if(P == arr.get(i)){
-               found = true;
-           }
-           else{
-               db.insertPerson(P);
-           }
-       }
-       return found;
+    public void RegisterP(Person P){
+      if(db.PersonAlreadyExists(P))
+          System.out.print("The User Already Exists!!!!!");
+      else{
+          db.insertPerson(P);}
    }
 
     @Override
@@ -52,9 +43,9 @@ public class PersonHandler extends UnicastRemoteObject implements PersonInterfac
     }
 
     @Override
-     public Person GetP(Person P ){
+     public Person GetP(String email ){
          
-         return db.getPersonByMail(P.getEmail());
+         return db.getPersonByMail(email);
      }
     
 }
