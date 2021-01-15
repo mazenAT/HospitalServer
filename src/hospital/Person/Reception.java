@@ -9,6 +9,7 @@ import hospital.DBConnection;
 import hospital.Tranactions.Medical_Insurance;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,5 +45,24 @@ public class Reception extends UnicastRemoteObject implements ReceptionistManage
         }
         return approvment;
     }
+     
+    @Override
+    public void UpdatePatient(Patient p){
+        db.UpdatePatient(p);
+    } 
     
+    @Override
+    public Patient getPatientByPhone(String phone){
+        return db.getPatientByPhone(phone);
+    }
+   
+    @Override
+     public ArrayList<Patient> getAllOutDoorPatients(){
+         return db.getAllOutDoorPatients();
+     }
+     
+    @Override
+     public void UpdatePatientMedicine(String p, String m){
+         db.UpdatePatientMedicine(p, m);
+     }
 }

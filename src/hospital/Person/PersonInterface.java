@@ -30,7 +30,10 @@ public interface PersonInterface extends Remote{
     public ArrayList<Doctor> getAllDoctors()throws RemoteException;
     
     public ArrayList<Nurse> getAllNurses()throws RemoteException;
+    
+    public void updateDoctor(Doctor P)throws RemoteException;
+            
     public Admin getAdmin() throws RemoteException;
     
-    
+     public void updatePatientMedicine(String email, String p, String m) throws RemoteException;
 }

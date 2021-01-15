@@ -116,6 +116,16 @@ public class DBConnection {
         }
         return result;
     }
+    
+    public ArrayList<Patient> getAllOutDoorPatients() {
+        ArrayList<Patient> result = new ArrayList();
+        ArrayList<Document> docs = OutdoorPatient.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Patient.class));
+        }
+        return result;
+    }
+    
    public ArrayList<LaboratoryTest> getAllLaboratoryTest() {
         ArrayList<LaboratoryTest> result = new ArrayList();
         ArrayList<Document> docs = LaboratoryTest.find().into(new ArrayList<Document>());
@@ -140,7 +150,34 @@ public class DBConnection {
         Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
         System.out.println("Person is Updated.");
     }
-
+    
+    public void updateDoctor(Doctor P) {
+        Document doc = Document.parse(gson.toJson(P));
+        Person.replaceOne(Filters.eq("email", P.getEmail()), doc);
+        System.out.println("Doctor is Updated.");
+    }
+    
+    
+    public void UpdatePatient(Patient p){
+        
+        OutdoorPatient.updateOne(Filters.eq("phone", p.getPhone()),Updates.set("BT",p.getBT()));
+        OutdoorPatient.updateOne(Filters.eq("phone", p.getPhone()),Updates.set("name",p.getName()));
+        OutdoorPatient.updateOne(Filters.eq("phone", p.getPhone()),Updates.set("phone",p.getPhone()));
+        OutdoorPatient.updateOne(Filters.eq("phone", p.getPhone()),Updates.set("age",p.getAge()));
+        OutdoorPatient.updateOne(Filters.eq("phone", p.getPhone()),Updates.set("gender",p.getGender()));
+        OutdoorPatient.updateOne(Filters.eq("phone", p.getPhone()),Updates.set("MedicalCondition",p.getMedicalCondition()));
+        System.out.println("Patient is Updated.");
+    }
+    
+    public void UpdatePatientMedicine(String p, String m){
+        OutdoorPatient.updateOne(Filters.eq("phone", p),Updates.set("Medicine",m));
+    }
+    public Patient getPatientByPhone(String phone) {
+        Document doc = OutdoorPatient.find(Filters.eq("phone", phone)).first();
+        Patient result = gson.fromJson(doc.toJson(), Patient.class);
+        return result;
+    }
+    
     public Person getPersonByMail(String email) {
         Document doc = Person.find(Filters.eq("email", email)).first();
         Person result = gson.fromJson(doc.toJson(), Person.class);

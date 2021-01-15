@@ -73,4 +73,26 @@ public class PersonHandler extends UnicastRemoteObject implements PersonInterfac
     public Admin getAdmin(){
         return db.getAdmin();
     }
+    
+    @Override
+    public void updateDoctor(Doctor P){
+        db.updateDoctor(P);
+    }
+    
+    @Override
+    public void updatePatientMedicine(String em, String p, String m){
+           String email = em;
+            String medicine = m;
+            String phone = p;
+            db.UpdatePatientMedicine(phone, medicine);
+            Doctor dt = db.getDoctorByMail(email);
+            
+      for(int i =0; i<dt.getPatient().size(); i++){
+          if(dt.getPatient().get(i).getPhone().equals(p))
+              dt.getPatient().get(i).setMedicine(m);
+      }
+            
+      db.updateDoctor(dt);
+  }
+    
 }
