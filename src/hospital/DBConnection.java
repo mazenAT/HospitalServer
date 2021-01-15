@@ -520,6 +520,14 @@ public ArrayList<Bill> getAllBills() {
         Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("PatientName",op.getRoomNumber()));
         System.out.println("Operation is Updated.");
     }
+    
+    public Operation getOperation(){
+        
+        Document doc = Operation.find(Filters.eq("id",1)).first();
+        Operation result = gson.fromJson(doc.toJson(), Operation.class);
+        return result;
+    
+    }
 
     public void close() {
         mongo.close();

@@ -5,6 +5,7 @@
  */
 package hospital.Person;
 
+import hospital.Tranactions.Operation;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -36,4 +37,6 @@ public interface PersonInterface extends Remote{
     public Admin getAdmin() throws RemoteException;
     
      public void updatePatientMedicine(String email, String p, String m) throws RemoteException;
+     
+     public Operation getOperation()throws RemoteException;
 }

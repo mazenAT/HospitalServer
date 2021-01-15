@@ -173,4 +173,6 @@ public class Operation extends UnicastRemoteObject implements OperationInterface
     public void updateInDB(){
         DB.db.updateOperation(this);
     }
+    
+   
 }
