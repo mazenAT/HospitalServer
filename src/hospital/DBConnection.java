@@ -33,6 +33,7 @@ public class DBConnection {
     private MongoClient mongo;
     private MongoDatabase hospital;
     private MongoCollection<Document> Person;
+    private MongoCollection<Document> Doctor;
     private MongoCollection<Document> Equipments;
     private MongoCollection<Document> MedicalTool;
     private MongoCollection<Document> Medicine;
@@ -61,6 +62,7 @@ public class DBConnection {
         hospital = mongo.getDatabase("hospital");//database name
 
         Person = hospital.getCollection("Person"); // Collection nam
+        Doctor = hospital.getCollection("Doctor");
         Clinic = hospital.getCollection("Clinic");
         Laboratory = hospital.getCollection("Laboratory");
         Room = hospital.getCollection("Room");
@@ -172,6 +174,7 @@ public class DBConnection {
         }
         return result;
     }
+
     
    
   
@@ -195,6 +198,13 @@ public class DBConnection {
     return result;
     }
 
+
+/// Added Doctor Because of maitain Doctor records
+    public void updateDoctorRecord(Doctor D){
+         Document doc = Document.parse(gson.toJson(D));
+         Person.replaceOne(Filters.eq("email", D.getEmail()), doc);
+    }
+  
     public void insertRoom(Room R) {
         Room.insertOne(Document.parse(gson.toJson(R)));
         System.out.println("Room inserted.");

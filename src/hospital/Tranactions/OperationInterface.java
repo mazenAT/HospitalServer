@@ -5,8 +5,10 @@
  */
 package hospital.Tranactions;
 
+
 import hospital.DB;
 import hospital.Person.Accountant;
+
 import hospital.Person.Doctor;
 import hospital.Person.Nurse;
 import java.rmi.Remote;
@@ -14,6 +16,7 @@ import java.rmi.RemoteException;
 
 /**
  *
+
  * @author hmoo_
  */
 public interface OperationInterface extends Remote {
@@ -63,4 +66,3 @@ public interface OperationInterface extends Remote {
     public void setId(int id) throws RemoteException;
 
 }
-

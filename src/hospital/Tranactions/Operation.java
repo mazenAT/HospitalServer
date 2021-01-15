@@ -10,21 +10,25 @@ import hospital.Person.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+
 /**
  *
  * @author mazen
  */
 public class Operation extends UnicastRemoteObject implements OperationInterface{
+
     private int id;
     private float cost;
     private String time;
     private String type;
     private String AssignedNurse;
     private String AssignedDoctor;
+
     private int RoomNumber;
     private String PatientName;
     private ArrayList<Doctor> Observers1 = new ArrayList<Doctor>();
     private ArrayList<Nurse> Observers3 = new ArrayList<Nurse>();
+
 
     public Operation(float cost, String time, String type,int RoomNumber) throws RemoteException{
         this.id = 1;
@@ -53,6 +57,7 @@ public class Operation extends UnicastRemoteObject implements OperationInterface
     
 
     @Override
+
     public float getCost() {
         return cost;
     }
@@ -78,6 +83,7 @@ public class Operation extends UnicastRemoteObject implements OperationInterface
             this.Observers3.get(i).update(this.time,this.type);
         }
     }
+
 
     @Override
     public String getAssignedNurse() {
