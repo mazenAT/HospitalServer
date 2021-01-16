@@ -16,21 +16,21 @@ public class LaboratoryTestFactory {
       
     }
    
-    public Test CreateTest(String Type, String ChemistName, float testPrice, String PateintName, int TestSample){
+    public Test CreateTest(String Type, float testPrice, String PateintName, int TestSample){
         if(Type == null){
          return null;
       }		
       if(Type.equalsIgnoreCase("BloodTest")){
-          BloodTest bt = new BloodTest( Type,  ChemistName,  testPrice,  PateintName,  TestSample);
+          BloodTest bt = new BloodTest( Type,  testPrice,  PateintName,  TestSample);
          return  bt;
          
       } else if(Type.equalsIgnoreCase("DiabetesTest")){
-          DiabetesTest bt = new DiabetesTest( Type,  ChemistName,  testPrice,  PateintName,  TestSample);
+          DiabetesTest bt = new DiabetesTest( Type, testPrice,  PateintName,  TestSample);
          return  bt;
          
          
       } else if(Type.equalsIgnoreCase("PCRTest")){
-          PCRTest bt = new PCRTest( Type,  ChemistName,  testPrice,  PateintName,  TestSample);
+          PCRTest bt = new PCRTest( Type,  testPrice,  PateintName,  TestSample);
          return  bt;
       }
       

@@ -19,5 +19,5 @@ public interface ChemistInterface extends Remote{
     
     public ArrayList<Test> getAllLaboratoryTest()throws RemoteException;
     
-    public void makeTest(String TestType, String ChemistName, float testPrice, String PateintName, int TestSample) throws RemoteException;
+    public void makeTest(String TestType, float testPrice, String PateintName, int TestSample) throws RemoteException;
 }
