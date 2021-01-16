@@ -5,30 +5,30 @@
  */
 package hospital;
 
+import hospital.Tranactions.Bill;
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  *
  * @author isl27
  */
-public class HospitalBudget {
-    
+public class HospitalBudget implements Serializable {
+
     private String HospName;
-    private double income;
     private double wagesExpenditures;
     private double EquipmentExpenditures;
     private double medicalToolsExpenditures;
     private double medicineExpenditures;
-    private float intial_treasury;
-    private float Current_treasury;
+    private double intial_treasury;
 
-    public HospitalBudget(String HospName, double income, double wagesExpenditures, double EquipmentExpenditures, double medicalToolsExpenditures, double medicineExpenditures, float intial_treasury, float Current_treasury) {
+    public HospitalBudget(String HospName, double wagesExpenditures, double EquipmentExpenditures, double medicalToolsExpenditures, double medicineExpenditures, double intial_treasury) {
         this.HospName = HospName;
-        this.income = income;
         this.wagesExpenditures = wagesExpenditures;
         this.EquipmentExpenditures = EquipmentExpenditures;
         this.medicalToolsExpenditures = medicalToolsExpenditures;
         this.medicineExpenditures = medicineExpenditures;
         this.intial_treasury = intial_treasury;
-        this.Current_treasury = Current_treasury;
     }
 
     public String getHospName() {
@@ -37,14 +37,6 @@ public class HospitalBudget {
 
     public void setHospName(String HospName) {
         this.HospName = HospName;
-    }
-
-    public double getIncome() {
-        return income;
-    }
-
-    public void setIncome(double income) {
-        this.income = income;
     }
 
     public double getWagesExpenditures() {
@@ -79,22 +71,12 @@ public class HospitalBudget {
         this.medicineExpenditures = medicineExpenditures;
     }
 
-    public float getIntial_treasury() {
+    public double getIntial_treasury() {
         return intial_treasury;
     }
 
-    public void setIntial_treasury(float intial_treasury) {
+    public void setIntial_treasury(double intial_treasury) {
         this.intial_treasury = intial_treasury;
     }
 
-    public float getCurrent_treasury() {
-        return Current_treasury;
-    }
-
-    public void setCurrent_treasury(float Current_treasury) {
-        this.Current_treasury = Current_treasury;
-    }
-    
-    
-    
 }

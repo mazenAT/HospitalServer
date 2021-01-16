@@ -48,12 +48,16 @@ public class HospitalServer {
             Budget a = new HBController();
 
              Registry r = LocateRegistry.createRegistry(1010);
-             r.bind("rece", R);/*
-             r.bind("budget", a);*/
+             r.bind("rece", R);
+             
+             BillReadOnly b = new BillHandler(); 
+             r.bind("bill", b);
+             
+             r.bind("budget", a);
              r.bind("per", p);
              ChemistInterface C = new ChemistHandler();
              r.bind("chem",C);
-             BillInterface B = new BillHandler();
+             
 
              OperationInterface op = new Operation();
              r.bind("oper", op); 

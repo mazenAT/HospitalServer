@@ -260,14 +260,9 @@ public class DBConnection {
         Warehouse.insertOne(Document.parse(gson.toJson(W)));
         System.out.println("Warehouse inserted.");
     }
-    public void insertBill(Bill B) {
-        Bill.insertOne(Document.parse(gson.toJson(B)));
-        System.out.println("Bill inserted.");
-    }
+    
 
-    public void deleteBill(int BillID) {
-        Bill.deleteOne(Filters.eq("BillID", BillID));
-    }
+    
     public void deleteRoom(int RoomNum) {
         Room.deleteOne(Filters.eq("RoomNum", RoomNum));
     }
@@ -331,14 +326,7 @@ public class DBConnection {
         }
         return result;
     }
-public ArrayList<Bill> getAllBills() {
-        ArrayList<Bill> result = new ArrayList();
-        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
-        }
-        return result;
-    }
+
     
     public ArrayList<Warehouse> getAllWarehouse() {
         ArrayList<Warehouse> result = new ArrayList();
@@ -534,6 +522,69 @@ public ArrayList<Bill> getAllBills() {
         Operation result = gson.fromJson(doc.toJson(), Operation.class);
         return result;
     
+    }
+
+      //********************* Bill ***************************
+    public void insertBill(Bill B) {
+        Bill.insertOne(Document.parse(gson.toJson(B)));
+        System.out.println("Bill inserted.");
+    }
+
+    public void deleteBill(int BillID) {
+        Bill.deleteOne(Filters.eq("BillID", BillID));
+    }
+
+    public ArrayList<Bill> getAllBills() {
+        ArrayList<Bill> result = new ArrayList();
+        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
+        }
+        return result;
+    }
+
+    public double getTotalIncome() {
+        ArrayList<Bill> result = new ArrayList();
+        double income = 0;
+        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
+        }
+
+        for (int j = 0; j < result.size(); j++) {
+            income += result.get(j).getTotalMoney();
+        }
+        return income;
+    }
+
+    public Bill getBillByName(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result;
+    }
+
+    public int BillID(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getBillID();
+    }
+
+    public String BillPname(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getPateintName();
+    }
+
+    public String BillDetails(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getBillDetails();
+    }
+
+    public double BillPrice(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getTotalMoney();
     }
 
     public void close() {

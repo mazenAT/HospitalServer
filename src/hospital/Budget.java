@@ -14,11 +14,11 @@ import java.rmi.RemoteException;
  */
 public interface Budget extends Remote{
     
-    public double getWages() throws RemoteException;
+     public double getWages() throws RemoteException;
     public double getEq() throws RemoteException;
     public double getMT() throws RemoteException;
     public double getMedicine() throws RemoteException;
-    public double setIncome(String name,double x) throws RemoteException;
+    public double getIT() throws RemoteException;
     public double setWagesExpenditures(String name,double x) throws RemoteException;
     public double setEquipmentExpenditures(String name,double x) throws RemoteException;
     public double setMedicalToolsExpenditures(String name,double x) throws RemoteException;

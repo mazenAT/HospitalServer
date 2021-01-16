@@ -6,32 +6,55 @@
 package hospital.Tranactions;
 
 import hospital.DBConnection;
-import hospital.Person.Patient;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-
 
 /**
  *
  * @author Lenovo
  */
-public class BillHandler extends UnicastRemoteObject implements BillInterface {
-DBConnection db = new DBConnection();
+public class BillHandler extends UnicastRemoteObject implements BillReadOnly {
+
+    DBConnection db = new DBConnection();
+    private ArrayList<Bill> result;
+
     public BillHandler() throws RemoteException {
+        super();
     }
+
     @Override
-    public Bill GenerateTestBill(String N) throws RemoteException {
-        ArrayList<Bill> B = new ArrayList<Bill>();
-        B=db.getAllBills();
-        Bill a = new Bill();
-         for(int x=0; x<B.size() ;x++ ){
-                    if(B.get(x).getPateintName()== N){
-                        a= B.get(x);  
-                        return a;
+    public ArrayList<Bill> AllBills() {
+        return db.getAllBills();
+    }
+
+    @Override
+    public int getBillID(String name) {
+
+        return db.BillID(name);
     }
     
-}
-         return null;
+    @Override
+    public String getBPName(String name) {
+
+        return db.BillPname(name);
     }
+    
+    @Override
+    public String getBDetails(String name) {
+
+        return db.BillDetails(name);
+    }
+    
+    @Override
+    public double getBPrice(String name) {
+
+        return db.BillPrice(name);
+    }
+
+    @Override
+    public double getTIncome() {
+        return db.getTotalIncome();
+    }
+
 }
