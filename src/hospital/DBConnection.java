@@ -17,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
 
-import hospital.HospitalBudget.*;
 import hospital.Person.*;
 import hospital.Expenditures.*;
 import hospital.Spaces.*;
@@ -175,6 +174,60 @@ public class DBConnection {
     public void deleteBill(int BillID) {
         Bill.deleteOne(Filters.eq("BillID", BillID));
     }
+    
+    public ArrayList<Bill> getAllBills() {
+        ArrayList<Bill> result = new ArrayList();
+        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
+        }
+        return result;
+    }
+    
+    public double getTotalIncome() {
+        ArrayList<Bill> result = new ArrayList();
+        double income = 0;
+        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
+        for (int i = 0; i < docs.size(); i++) {
+            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
+        }
+        
+        for (int j = 0; j < result.size(); j++) {
+            income += result.get(j).getTotalMoney();
+        }
+        return income;
+    }
+    
+    public Bill getBillByName(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result;
+    }
+    
+    public int BillID(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getBillID();
+    }
+    
+    public String BillPname(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getPateintName();
+    }
+    
+    public String BillDetails(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getBillDetails();
+    }
+    
+    public double BillPrice(String name) {
+        Document doc = Bill.find(Filters.eq("PateintName", name)).first();
+        Bill result = gson.fromJson(doc.toJson(), Bill.class);
+        return result.getTotalMoney();
+    }
+    
     public void deleteRoom(int RoomNum) {
         Room.deleteOne(Filters.eq("RoomNum", RoomNum));
     }
@@ -235,14 +288,6 @@ public class DBConnection {
         ArrayList<Document> docs = Laboratory.find().into(new ArrayList<Document>());
         for (int i = 0; i < docs.size(); i++) {
             result.add(gson.fromJson(docs.get(i).toJson(), Laboratory.class));
-        }
-        return result;
-    }
-public ArrayList<Bill> getAllBills() {
-        ArrayList<Bill> result = new ArrayList();
-        ArrayList<Document> docs = Bill.find().into(new ArrayList<Document>());
-        for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), Bill.class));
         }
         return result;
     }
@@ -381,8 +426,9 @@ public ArrayList<Bill> getAllBills() {
         Warehouse.replaceOne(Filters.eq("WarehouseNum", s.getWarehouseNum()), doc);
     }
 
+    
+    
       //*************************** Budget Functions *****************************
-
 
     public void insertHospBudget(HospitalBudget h) {
         HospitalBudget.insertOne(Document.parse(gson.toJson(h)));
@@ -408,13 +454,21 @@ public ArrayList<Bill> getAllBills() {
     public void updateMedicineEx(String name,double x) {
         HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("medicineExpenditures",x));
     }
-
+    
+    public void updateCT(String name,double x) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("Current_treasury",x));
+    }
+    
+    public void updateBills(String name,ArrayList<Bill> bills) {
+        HospitalBudget.updateOne(Filters.eq("HospName", name),Updates.set("Bills",bills));
+    }
     
     public HospitalBudget getBudget() {
         Document doc = HospitalBudget.find(Filters.eq("HospName", "El-Amal")).first();
         HospitalBudget result = gson.fromJson(doc.toJson(), HospitalBudget.class);
         return result;
     }
+ 
     
 
     public void close() {

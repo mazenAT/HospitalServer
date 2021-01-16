@@ -18,8 +18,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-
-
 public class HospitalServer {
 
     /**
@@ -29,40 +27,19 @@ public class HospitalServer {
         // TODO code application logic here
 
         DBConnection db = new DBConnection();
-        //Person N = new Nurse("Bachelors","Nightshift","xyz",false,"7osnya","7osnya.bue@7osnya.com","0121616532", 26,"Female","obour city","nurse",2000);
-        //db.insertPerson(N);
-
-        //Person N = new Nurse("Bachelors","Nightshift","xyz",false,"7osnya","7osnya.bue@7osnya.com","0121616532", 26,"Female","obour city","nurse",2000);
-        //db.insertPerson(N);
         
-        
-       try{
-            
-             ReceptionistManager R = new Reception();
+        try {
 
-            PersonInterface p = new PersonHandler();
+            Registry r = LocateRegistry.createRegistry(1010);
             Budget a = new HBController();
+            BillReadOnly b = new BillHandler();
+            r.bind("budget", a);
+            r.bind("bill", b);
 
-             Registry r = LocateRegistry.createRegistry(1010);
-            /* r.bind("rece", R);
-             r.bind("budget", a);*/
-             r.bind("per", p);
-             ChemistInterface C = new ChemistHandler();
-             BillInterface B = new BillHandler();
-
-             r.bind("chem",C);
-
-
-             //Person m = new Doctor("Neurologist","Neuro-dept","day",null,null,"Mohamed","mohamed@mohamed.com","01000214546",30,"Male","helwan","Doctor",12500);
-             //db.insertPerson(m);
-         
-             
-             System.out.println("Server Is Ready!!!!");
-        }
-        catch(Exception e){
+            System.out.println("Server Is Ready!");
+        } catch (Exception e) {
             System.out.println(e);
         }
-       
     }
-    
+
 }
