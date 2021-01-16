@@ -32,7 +32,6 @@ public class DBConnection {
     private MongoClient mongo;
     private MongoDatabase hospital;
     private MongoCollection<Document> Person;
-    private MongoCollection<Document> Doctor;
     private MongoCollection<Document> Equipments;
     private MongoCollection<Document> MedicalTool;
     private MongoCollection<Document> Medicine;
@@ -61,7 +60,6 @@ public class DBConnection {
         hospital = mongo.getDatabase("hospital");//database name
 
         Person = hospital.getCollection("Person"); // Collection nam
-        Doctor = hospital.getCollection("Doctor");
         Clinic = hospital.getCollection("Clinic");
         Laboratory = hospital.getCollection("Laboratory");
         Room = hospital.getCollection("Room");
@@ -174,9 +172,16 @@ public class DBConnection {
         System.out.println("Patient is Updated.");
     }
 
-    public void UpdatePatientMedicine(String p, String m) {
-        OutdoorPatient.updateOne(Filters.eq("phone", p), Updates.set("Medicine", m));
+    
+    public void UpdatePatientMedicine(String p, String m){
+        OutdoorPatient.updateOne(Filters.eq("phone", p),Updates.set("Medicine",m));
     }
+    
+    public void UpdateNurseAvailablity(String email, boolean av){
+        Person.updateOne(Filters.eq("email", email),Updates.set("availability",av));
+
+    }
+    
     public Patient getPatientByPhone(String phone) {
         Document doc = OutdoorPatient.find(Filters.eq("phone", phone)).first();
         Patient result = gson.fromJson(doc.toJson(), Patient.class);

@@ -44,27 +44,7 @@ public class HospitalServer {
             r.bind("budget", a);
             r.bind("oper", op);
             
-            //Person m = new Doctor("Neurologist","Neuro-dept","day","Mohamed","mohamed@mohamed.com","11111",30,"Male","helwan","Doctor",12500);
-            // db.insertPerson(m);
-
-             Registry r = LocateRegistry.createRegistry(1010);
-             r.bind("rece", R);
-             
-             BillReadOnly b = new BillHandler(); 
-             r.bind("bill", b);
-             
-             r.bind("budget", a);
-             r.bind("per", p);
-             ChemistInterface C = new ChemistHandler();
-             r.bind("chem",C);
-             
-
-             OperationInterface op = new Operation();
-             r.bind("oper", op); 
-            
-             //Person m = new Doctor("Neurologist","Neuro-dept","day","Mohamed","mohamed@mohamed.com","11111",30,"Male","helwan","Doctor",12500);
-            // db.insertPerson(m);
-            
+           
              
              System.out.println("Server Is Ready!!!!");
         }

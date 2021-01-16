@@ -11,14 +11,14 @@ package hospital.Tranactions;
  */
 public class BloodTest implements Test{
     private String TestType;
-    private String ChemistName;
+  
     private float testPrice;
     private String PateintName;
     private int TestSample;
 
-    public BloodTest(String TestType, String ChemistName, float testPrice, String PateintName, int TestSample) {
+    public BloodTest(String TestType, float testPrice, String PateintName, int TestSample) {
         this.TestType = TestType;
-        this.ChemistName = ChemistName;
+        
         this.testPrice = testPrice;
         this.PateintName = PateintName;
         this.TestSample = TestSample;
@@ -47,13 +47,6 @@ public class BloodTest implements Test{
         this.TestType = TestType;
     }
 
-    public String getChemistName() {
-        return ChemistName;
-    }
-
-    public void setChemistName(String ChemistName) {
-        this.ChemistName = ChemistName;
-    }
 
     public float getTestPrice() {
         return testPrice;

@@ -25,9 +25,9 @@ DBConnection db = new DBConnection();
     
     
 @Override
-     public void makeTest(String TestType, String ChemistName, float testPrice, String PateintName, int TestSample){
+     public void makeTest(String TestType,  float testPrice, String PateintName, int TestSample){
          LaboratoryTestFactory lt = new LaboratoryTestFactory();
-         Test t = lt.CreateTest(TestType, ChemistName, testPrice, PateintName, TestSample);
+         Test t = lt.CreateTest(TestType,  testPrice, PateintName, TestSample);
          t.MakeTest();
          db.insertLaboratoryTest(t);
      }
