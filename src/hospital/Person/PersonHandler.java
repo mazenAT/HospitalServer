@@ -6,6 +6,7 @@
 package hospital.Person;
 
 import hospital.DBConnection;
+import hospital.Tranactions.Operation;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -95,4 +96,8 @@ public class PersonHandler extends UnicastRemoteObject implements PersonInterfac
       db.updateDoctor(dt);
   }
     
+     @Override
+    public Operation getOperation(){
+        return db.getOperation();
+    }
 }

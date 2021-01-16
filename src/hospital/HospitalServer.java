@@ -58,6 +58,7 @@ public class HospitalServer {
 
              OperationInterface op = new Operation();
              r.bind("oper", op); 
+             System.out.println(p.getOperation().getTime());
              //Person m = new Doctor("Neurologist","Neuro-dept","day","Mohamed","mohamed@mohamed.com","11111",30,"Male","helwan","Doctor",12500);
             // db.insertPerson(m);
             

@@ -64,5 +64,7 @@ public interface OperationInterface extends Remote {
       public int getId() throws RemoteException;
 
     public void setId(int id) throws RemoteException;
+    
+    
 
 }
