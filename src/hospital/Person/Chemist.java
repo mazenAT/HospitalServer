@@ -5,7 +5,7 @@
  */
 package hospital.Person;
 
-import hospital.Tranactions.LaboratoryTest;
+
 import hospital.Person.*;
 
 import java.io.Serializable;
@@ -26,15 +26,16 @@ public class Chemist extends Person implements Serializable{
     private String JobDegree;
     private String Shift;
 
-    private ArrayList<LaboratoryTest> LT;
-
-    public Chemist(String JobDegree, String Shift, ArrayList<LaboratoryTest> LT, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+    public Chemist(String JobDegree, String Shift,String name, String email, String phone, int age, String gender, String address, String role, float salary) {
        super(name, email, phone, age, gender, address, role, salary);
         this.JobDegree = JobDegree;
         this.Shift = Shift;
-        this.LT = LT;
+       
     }
 
+    public Chemist() {
+    }
+    
     public String getDegreeLvl() {
         return JobDegree;
     }
@@ -51,32 +52,12 @@ public class Chemist extends Person implements Serializable{
         this.Shift = Shift;
     }
 
-    public ArrayList<LaboratoryTest> getLT() {
-        return LT;
-    }
-
-
-    public void setLT(LaboratoryTest LT) {
-        this.LT.add(LT);
-   }
-
-    
-
-
-
-    
-
-
-    
     @Override
     public String toString() {
-        return "Chemist{" + "degreeLvl=" + JobDegree + ", Shift=" + Shift + ", LT=" + LT + '}';
+        return "Chemist{" + "JobDegree=" + JobDegree + ", Shift=" + Shift + '}';
     }
-    
 
-    
-    
-    
+
 
     
 }

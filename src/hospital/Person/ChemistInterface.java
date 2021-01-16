@@ -5,8 +5,8 @@
  */
 package hospital.Person;
 
-import hospital.Person.Patient;
-import hospital.Tranactions.LaboratoryTest;
+
+import hospital.Tranactions.Test;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -16,5 +16,8 @@ import java.util.ArrayList;
  * @author Lenovo
  */
 public interface ChemistInterface extends Remote{
-   public LaboratoryTest GenerateTestResult(String N) throws RemoteException;
+    
+    public ArrayList<Test> getAllLaboratoryTest()throws RemoteException;
+    
+    public void makeTest(String TestType, String ChemistName, float testPrice, String PateintName, int TestSample) throws RemoteException;
 }

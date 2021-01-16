@@ -6,7 +6,7 @@
 package hospital.Tranactions;
 
 import hospital.Tranactions.BillInterface;
-import hospital.Tranactions.LaboratoryTest;
+import hospital.Tranactions.LaboratoryTestFactory;
 import hospital.Tranactions.Operation;
 import java.rmi.RemoteException;
 import java.util.Date;

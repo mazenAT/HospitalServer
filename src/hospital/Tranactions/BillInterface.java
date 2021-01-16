@@ -6,7 +6,7 @@
 
 package hospital.Tranactions;
 import hospital.DBConnection;
-import hospital.Tranactions.LaboratoryTest;
+import hospital.Tranactions.LaboratoryTestFactory;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 

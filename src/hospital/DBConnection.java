@@ -104,7 +104,7 @@ public class DBConnection {
         IndoorPatient.insertOne(Document.parse(gson.toJson(P)));
         System.out.println("Inpatient inserted.");
     }
-    public void insertLaboratoryTest(LaboratoryTest L) {
+    public void insertLaboratoryTest(Test L) {
         LaboratoryTest.insertOne(Document.parse(gson.toJson(L)));
         System.out.println("LaboratoryTest inserted.");
     }
@@ -126,11 +126,11 @@ public class DBConnection {
         return result;
     }
     
-   public ArrayList<LaboratoryTest> getAllLaboratoryTest() {
-        ArrayList<LaboratoryTest> result = new ArrayList();
+   public ArrayList<Test> getAllLaboratoryTest() {
+        ArrayList<Test> result = new ArrayList();
         ArrayList<Document> docs = LaboratoryTest.find().into(new ArrayList<Document>());
         for (int i = 0; i < docs.size(); i++) {
-            result.add(gson.fromJson(docs.get(i).toJson(), LaboratoryTest.class));
+            result.add(gson.fromJson(docs.get(i).toJson(), Test.class));
         }
         return result;
     }
@@ -171,6 +171,10 @@ public class DBConnection {
     
     public void UpdatePatientMedicine(String p, String m){
         OutdoorPatient.updateOne(Filters.eq("phone", p),Updates.set("Medicine",m));
+    }
+    
+    public void UpdateNurseAvailablity(String email, boolean av){
+        OutdoorPatient.updateOne(Filters.eq("phone", email),Updates.set("availability",av));
     }
     public Patient getPatientByPhone(String phone) {
         Document doc = OutdoorPatient.find(Filters.eq("phone", phone)).first();
@@ -518,6 +522,9 @@ public ArrayList<Bill> getAllBills() {
         Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("AssignedDoctor",op.getAssignedDoctor()));
         Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("RoomNumber",op.getRoomNumber()));
         Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("PatientName",op.getRoomNumber()));
+       // Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("Observers1",op.getObservers1().get(0)));
+        //Operation.updateOne(Filters.eq("id", op.getId()),Updates.set("Observers3",op.getObservers3()));
+
         System.out.println("Operation is Updated.");
     }
     

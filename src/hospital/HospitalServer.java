@@ -52,13 +52,12 @@ public class HospitalServer {
              r.bind("budget", a);*/
              r.bind("per", p);
              ChemistInterface C = new ChemistHandler();
-             BillInterface B = new BillHandler();
-
              r.bind("chem",C);
+             BillInterface B = new BillHandler();
 
              OperationInterface op = new Operation();
              r.bind("oper", op); 
-             System.out.println(p.getOperation().getTime());
+            
              //Person m = new Doctor("Neurologist","Neuro-dept","day","Mohamed","mohamed@mohamed.com","11111",30,"Male","helwan","Doctor",12500);
             // db.insertPerson(m);
             

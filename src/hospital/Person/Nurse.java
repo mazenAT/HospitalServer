@@ -23,12 +23,12 @@ public class Nurse extends Person implements Serializable,Observer{
     private String JobDegree;
     private String Shift;
     private String OperationTime;
-    private String OperationTimeType ;
+    private String OperationType ;
     private boolean availability;
 
     
 
-    public Nurse(String JobDegree, String Shift, boolean availability, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+     public Nurse(String JobDegree, String Shift, boolean availability, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
         super(name, email, phone, age, gender, address, role, salary);
         this.JobDegree = JobDegree;
         this.Shift = Shift;
@@ -51,12 +51,12 @@ public class Nurse extends Person implements Serializable,Observer{
         this.OperationTime = OperationTime;
     }
 
-    public String getOperationTimeType() {
-        return OperationTimeType;
+    public String getOperationType() {
+        return OperationType;
     }
 
-    public void setOperationTimeType(String OperationTimeType) {
-        this.OperationTimeType = OperationTimeType;
+    public void setOperationType(String OperationType) {
+        this.OperationType = OperationType;
     }
 
     
@@ -80,14 +80,16 @@ public class Nurse extends Person implements Serializable,Observer{
 
     @Override
     public String toString() {
-        return "Nurse{" + "JobDegree=" + JobDegree + ", Shift=" + Shift + ", OperationTime=" + OperationTime + ", OperationTimeType=" + OperationTimeType + ", availability=" + availability + '}';
+        return "Nurse{" + "JobDegree=" + JobDegree + ", Shift=" + Shift + ", OperationTime=" + OperationTime + ", OperationType=" + OperationType + ", availability=" + availability + '}';
     }
+
+    
 
     
     @Override
   public void update(String time, String type){
         this.OperationTime = time;
-        this.OperationTimeType = type;
+        this.OperationType = type;
         DB.db.updatePerson(this);
         
     }

@@ -39,4 +39,6 @@ public interface PersonInterface extends Remote{
      public void updatePatientMedicine(String email, String p, String m) throws RemoteException;
      
      public Operation getOperation()throws RemoteException;
+     
+     public void UpdateNurseAvailablity(String email, boolean av) throws RemoteException;
 }

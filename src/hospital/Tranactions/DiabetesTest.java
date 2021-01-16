@@ -9,20 +9,32 @@ package hospital.Tranactions;
  *
  * @author mazen
  */
-public class LaboratoryTest {
+public class DiabetesTest implements Test{
     private String TestType;
     private String ChemistName;
     private float testPrice;
     private String PateintName;
+    private int TestSample;
 
-    public LaboratoryTest(String TestType, String ChemistName, float testPrice, String PateintName) {
+    public DiabetesTest(String TestType, String ChemistName, float testPrice, String PateintName, int TestSample) {
         this.TestType = TestType;
         this.ChemistName = ChemistName;
         this.testPrice = testPrice;
         this.PateintName = PateintName;
+        this.TestSample = TestSample;
     }
 
-    public LaboratoryTest() {
+    public int getTestSample() {
+        return TestSample;
+    }
+
+    public void setTestSample(int TestSample) {
+        this.TestSample = TestSample;
+    }
+    
+    
+
+    public DiabetesTest() {
         
     }
 
@@ -59,13 +71,10 @@ public class LaboratoryTest {
         this.PateintName = PateintName;
     }
     
-    public boolean validateTest(String name){
-        
-        return false;
-    }
-    public LaboratoryTest GenerateTestResults(){
-        
-        return null;
+    @Override
+    public void MakeTest () {
+       
+        this.TestSample = TestSample*5;
     }
     
 }
