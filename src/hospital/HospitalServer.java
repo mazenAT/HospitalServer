@@ -27,14 +27,26 @@ public class HospitalServer {
         // TODO code application logic here
 
         DBConnection db = new DBConnection();
-        
         try {
 
             Registry r = LocateRegistry.createRegistry(1010);
-            Budget a = new HBController();
+            ChemistInterface C = new ChemistHandler();
+            OperationInterface op = new Operation();
+            ReceptionistManager R = new Reception();
+            PersonInterface p = new PersonHandler();
             BillReadOnly b = new BillHandler();
-            r.bind("budget", a);
+            Budget a = new HBController();
+            
+            r.bind("rece", R);
+            r.bind("per", p);
+            r.bind("chem", C);
             r.bind("bill", b);
+            r.bind("budget", a);
+            r.bind("oper", op);
+            
+            //Person m = new Doctor("Neurologist","Neuro-dept","day","Mohamed","mohamed@mohamed.com","11111",30,"Male","helwan","Doctor",12500);
+            // db.insertPerson(m);
+
 
             System.out.println("Server Is Ready!");
         } catch (Exception e) {

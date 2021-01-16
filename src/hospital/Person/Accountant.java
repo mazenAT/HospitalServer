@@ -5,6 +5,7 @@
  */
 package hospital.Person;
 
+import hospital.DB;
 import hospital.Tranactions.Medical_Insurance;
 import hospital.Tranactions.Operation;
 import java.io.Serializable;
@@ -14,17 +15,21 @@ import java.rmi.RemoteException;
  *
  * @author Ezzat
  */
-public class Accountant extends Person implements Serializable{
+public class Accountant extends Person implements Serializable,Observer{
     private String jobDegree;
-    private Operation operation;
+    private String OperationTime;
+    private String OperationTimeType ;
+
+    
+
+    public Accountant(String jobDegree, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
+        super(name, email, phone, age, gender, address, role, salary);
+        this.jobDegree = jobDegree;
+    }
 
    
 
-    public Accountant(String jobDegree, Operation operation, String name, String email, String phone, int age, String gender, String address, String role, float salary) {
-        super(name, email, phone, age, gender, address, role, salary);
-        this.jobDegree = jobDegree;
-        this.operation = operation;
-    }
+   
 
     public String getJobDegree() {
         return jobDegree;
@@ -34,22 +39,12 @@ public class Accountant extends Person implements Serializable{
         this.jobDegree = jobDegree;
     }
 
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        this.operation = operation;
-    }
-
     @Override
-    public String toString() {
-        return "Accountant{" + "jobDegree=" + jobDegree + ", operation=" + operation + '}';
-    }
-
-   
-
-      public void Update(){
+  public void update(String time, String type){
+        this.OperationTime = time;
+        this.OperationTimeType = type;
+        DB.db.updatePerson(this);
         
     }
+     
 }
