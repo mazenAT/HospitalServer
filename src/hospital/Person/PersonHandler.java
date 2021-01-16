@@ -100,4 +100,9 @@ public class PersonHandler extends UnicastRemoteObject implements PersonInterfac
     public Operation getOperation(){
         return db.getOperation();
     }
+    
+    @Override
+     public void UpdateNurseAvailablity(String email, boolean av){
+         db.UpdateNurseAvailablity(email, av);
+     }
 }

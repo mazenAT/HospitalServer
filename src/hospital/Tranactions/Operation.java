@@ -152,6 +152,16 @@ public class Operation extends UnicastRemoteObject implements OperationInterface
     public void removeObserver1(Doctor d) {
         this.Observers1.remove(d);
     }
+
+    @Override
+    public ArrayList<Doctor> getObservers1() {
+        return Observers1;
+    }
+
+    @Override
+    public ArrayList<Nurse> getObservers3() {
+        return Observers3;
+    }
     
  
     @Override

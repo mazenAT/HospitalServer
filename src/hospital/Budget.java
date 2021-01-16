@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public interface Budget extends Remote{
     
-    public double getWages() throws RemoteException;
+     public double getWages() throws RemoteException;
     public double getEq() throws RemoteException;
     public double getMT() throws RemoteException;
     public double getMedicine() throws RemoteException;

@@ -3,19 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hospital.Spaces;
-
-import hospital.Expenditures.Equipments;
-import hospital.Person.Chemist;
-
+package hospital.Tranactions;
 
 /**
  *
- * @author islam
+ * @author hmoo_
  */
-
-public class Laboratory {
+public interface Test {
     
-    
-    
+    /**
+     *
+     */
+    public void MakeTest();
 }

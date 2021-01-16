@@ -6,7 +6,8 @@
 package hospital.Person;
 
 import hospital.DBConnection;
-import hospital.Tranactions.LaboratoryTest;
+import hospital.Tranactions.LaboratoryTestFactory;
+import hospital.Tranactions.Test;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -17,30 +18,24 @@ import java.util.ArrayList;
  */
 public class ChemistHandler extends UnicastRemoteObject implements ChemistInterface {
 DBConnection db = new DBConnection();
-public ChemistHandler() throws RemoteException {
-    }
-    @Override
-    public LaboratoryTest GenerateTestResult(String N) throws RemoteException {
-        ArrayList<Patient> z1 = new ArrayList<Patient>();
-        z1=db.getAllPatient();
+    
+    public ChemistHandler() throws RemoteException {
         
-         ArrayList<LaboratoryTest> z2 = new ArrayList<LaboratoryTest>();
-        z2=db.getAllLaboratoryTest();
-   
-        Patient a = new Patient();
-        LaboratoryTest b = new LaboratoryTest();
-      
-        for(int y=0; y<z1.size(); y++){
-            if(z1.get(y).getName()== N )
-               a =z1.get(y);
-        }
-        for(int x=0;x<z2.size();x++ ){
-                    if(z2.get(x).getPateintName()== a.getName()){
-                        b=z2.get(x); 
-                        return b;
-                    }
-                }   
-        return null;
     }
     
+    
+@Override
+     public void makeTest(String TestType, String ChemistName, float testPrice, String PateintName, int TestSample){
+         LaboratoryTestFactory lt = new LaboratoryTestFactory();
+         Test t = lt.CreateTest(TestType, ChemistName, testPrice, PateintName, TestSample);
+         t.MakeTest();
+         db.insertLaboratoryTest(t);
+     }
+     
+@Override
+     public ArrayList<Test> getAllLaboratoryTest(){
+         return db.getAllLaboratoryTest();
+     }
+             
 }
+    
