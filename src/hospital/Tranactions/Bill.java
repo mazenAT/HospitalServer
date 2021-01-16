@@ -5,47 +5,32 @@
  */
 package hospital.Tranactions;
 
-import hospital.Tranactions.BillInterface;
-import hospital.Tranactions.LaboratoryTest;
-import hospital.Tranactions.Operation;
-import java.rmi.RemoteException;
-import java.util.Date;
+import java.io.Serializable;
+
 
 /**
  *
  * @author mazen
  */
-public class Bill {
-    private String BillID;
-    private Date Date;
+public class Bill implements Serializable{
+    private int BillID;
     private String PateintName;
-    private float TotalMoney;
-    private Bill BillDetails;         
+    private String BillDetails;
+    private double TotalMoney;
 
-    public Bill() {
-    }
-
-    public Bill(String BillID, Date Date, String PateintName, float TotalMoney) {
+    public Bill(int BillID, String PateintName, String BillDetails, double TotalMoney) {
         this.BillID = BillID;
-        this.Date = Date;
         this.PateintName = PateintName;
+        this.BillDetails = BillDetails;
         this.TotalMoney = TotalMoney;
     }
 
-    public String getBillID() {
+    public int getBillID() {
         return BillID;
     }
 
-    public void setBillID(String BillID) {
+    public void setBillID(int BillID) {
         this.BillID = BillID;
-    }
-
-    public Date getDate() {
-        return Date;
-    }
-
-    public void setDate(Date Date) {
-        this.Date = Date;
     }
 
     public String getPateintName() {
@@ -56,22 +41,28 @@ public class Bill {
         this.PateintName = PateintName;
     }
 
-    public float getTotalMoney() {
-        return TotalMoney;
-    }
-
-    public void setTotalMoney(float TotalMoney) {
-        this.TotalMoney = TotalMoney;
-    }
-
-    public Bill getBillDetails() {
+    public String getBillDetails() {
         return BillDetails;
     }
 
-   
+    public void setBillDetails(String BillDetails) {
+        this.BillDetails = BillDetails;
+    }
+
+    public double getTotalMoney() {
+        return TotalMoney;
+    }
+
+    public void setTotalMoney(double TotalMoney) {
+        this.TotalMoney = TotalMoney;
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" + "BillID=" + BillID + ", PateintName=" + PateintName + ", BillDetails=" + BillDetails + ", TotalMoney=" + TotalMoney + '}';
+    }
     
-   
     
+    
+
 }
-
-
